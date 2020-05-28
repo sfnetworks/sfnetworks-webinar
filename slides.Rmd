@@ -1,0 +1,76 @@
+---
+title: "Tidy Geospatial Networks in R"
+subtitle: "Introduction to the `sfnetworks` package"
+author: "Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace"
+date: "2020-06-16 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r setup, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scracth can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3)
+# library(flipbookr)
+library(xaringanthemer)
+```
+
+
+```{r xaringan-themer, include = F}
+style_mono_accent(
+  base_color = 'orange',
+  title_slide_background_image = "figs/milano.png",
+  code_font_size = '14px'
+)
+```
+
+```{r color, echo = FALSE, results='asis'}
+# crayon needs to be explicitly activated in Rmd
+options(crayon.enabled = TRUE)
+# Hooks needs to be set to deal with outputs
+# thanks to fansi logic
+old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks,
+                                   which = c("output", "message", "error"))
+```
+
+```{css, echo=FALSE}
+pre {
+  max-height: 90%;
+  overflow-y: auto;
+  background-color: inherit;
+}
+
+pre[class] {
+  max-height: 50%;
+}
+```
+
+
+## `sfnetworks` package
+
+### Installation
+
+```{r, eval = F}
+remotes::install_github("luukvdmeer/sfnetworks")
+```
+
+---
+
+## `sfnetworks` package
+
+### `sfnetwork` objects
+
+```{r}
+library(sfnetworks)
+roxel %>% 
+  as_sfnetwork() %>% 
+  class()
+```
+
