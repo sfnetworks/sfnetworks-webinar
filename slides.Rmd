@@ -13,13 +13,20 @@ output:
       countIncrementalSlides: false
       ratio: 16:9
 ---
+class: center, middle
 
 ```{r setup, include = F}
 # This is the recommended set up for flipbooks
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scracth can be time consuming
-knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3)
-# library(flipbookr)
+knitr::opts_chunk$set(
+  fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
+)
+knitr::opts_knit$set(global.par = TRUE)
+#remotes::install_github(EvaMaeRey/flipbookr)
+library(flipbookr)
+#install('xaringanthemer')
 library(xaringanthemer)
+library(sfnetworks)
 ```
 
 
@@ -40,37 +47,76 @@ old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks,
                                    which = c("output", "message", "error"))
 ```
 
-```{css, echo=FALSE}
-pre {
-  max-height: 90%;
-  overflow-y: auto;
-  background-color: inherit;
-}
-
-pre[class] {
-  max-height: 50%;
-}
+```{r, include = F, eval = F}
+# Code to create scrolling bar / not working good with flipbookr
+# ```{css, echo=FALSE}
+# pre {
+#   max-height: 90%;
+#   overflow-y: auto;
+#   background-color: inherit;
+# }
+# 
+# pre[class] {
+#   max-height: 50%;
+# }
+# ```
 ```
 
-
 ## `sfnetworks` package
+
+![](https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+<img src="https://raw.githubusercontent.com/thomasp85/tidygraph/master/man/figures/logo.png" style="width: 17%"/>
+
+The best of both worlds!
+---
 
 ### Installation
 
 ```{r, eval = F}
 remotes::install_github("luukvdmeer/sfnetworks")
+library(sfnetworks)
+```
+
+--
+
+### `sfnetwork` class and methods
+
+---
+
+`r chunk_reveal(chunk_name = "object", break_type = "user", display_type = "both")`
+
+```{r object, include = F}
+# `sfnetworks` pre-loaded LINESTRING  
+# `sf` object for Roxel, NRW, Germany
+roxel %>% #BREAK
+  # convert to an `sfnetwork` object
+  as_sfnetwork() %>% #BREAK
+  class() #BREAK
 ```
 
 ---
 
-## `sfnetworks` package
+`r chunk_reveal(chunk_name = "sfnetworks_options", break_type = "non_seq", display_type = "both")`
 
-### `sfnetwork` objects
-
-```{r}
-library(sfnetworks)
+```{r sfnetworks_options, include = F}
 roxel %>% 
-  as_sfnetwork() %>% 
-  class()
+  as_sfnetwork(
+    directed = F, #BREAK2
+    edges_as_lines = F #BREAK3
+  ) #BREAK
+```
+
+---
+
+`r chunk_reveal(chunk_name = "plot", break_type = "non_seq", display_type = "both")`
+
+```{r plot, include = F}
+par(mar = c(1, 1, 1, 1))
+roxel %>% 
+  as_sfnetwork(
+    directed = F,
+    edges_as_lines = F #BREAK2
+  ) %>% #BREAK
+  plot() #BREAK
 ```
 
