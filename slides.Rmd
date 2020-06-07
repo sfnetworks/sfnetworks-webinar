@@ -1,6 +1,6 @@
 ---
 title: "Tidy Geospatial Networks in R"
-subtitle: "Introduction to the `sfnetworks` package"
+subtitle: "Introducing the `sfnetworks` package"
 author: "Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace"
 date: "2020-06-16 (updated: `r Sys.Date()`)"
 output:
@@ -8,16 +8,16 @@ output:
     css: xaringan-themer.css
     lib_dir: libs
     nature:
+      beforeInit: "https://platform.twitter.com/widgets.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       ratio: 16:9
 ---
-class: center, middle
 
 ```{r setup, include = F}
 # This is the recommended set up for flipbooks
-# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scracth can be time consuming
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
 knitr::opts_chunk$set(
   fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
 )
@@ -29,12 +29,18 @@ library(xaringanthemer)
 library(sfnetworks)
 ```
 
-
 ```{r xaringan-themer, include = F}
 style_mono_accent(
   base_color = 'orange',
   title_slide_background_image = "figs/milano.png",
-  code_font_size = '14px'
+  background_image = "figs/milano_bg.png",
+  code_font_size = '14px',
+  text_slide_number_color = 'grey70',
+  link_color = 'orangered',
+  extra_css = list(
+    ".pull-left-70" = list("float" = "left", "width" = "65.8%"),
+    ".pull-right-30" = list("float" = "right", "width" = "28.2%")
+  )
 )
 ```
 
@@ -62,14 +68,111 @@ old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks,
 # ```
 ```
 
-## `sfnetworks` package
+---
+## Geospatial Networks
 
+
+---
+## Geospatial in R
+
+
+---
+## Networks in R
+
+.pull-left[
+- igraph
+- tidygraph
+- ...
+]
+.pull-right[
+<img src="https://datascienceplus.com/wp-content/uploads/2017/07/node_clique.png" style="width: 50%"/>
+
+.footnote[
+Plot by [Shirin Glander](https://datascienceplus.com/network-analysis-of-game-of-thrones/)
+]
+]
+---
+class: center, middle
+
+# then...
+
+## why a new package?
+
+---
+
+## Why a new package?
+
+.pull-left[
+![](figs/so_q1.png)
+]
+--
+.pull-right[
+![](figs/so_a1.png)
+]
+
+---
+
+## Why a new package?
+
+.center[
+![](figs/gh_q1.png)
+]
+
+---
+
+## Why a new package?
+
+.center[
+![](figs/gh_c1.png)
+]
+
+---
+## Why a new package?
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">One of the biggest reasons we still have ArcGIS licenses is for Network Analysis (drive times, service areas etc). Does anyone have <a href="https://twitter.com/hashtag/foss4g?src=hash&amp;ref_src=twsrc%5Etfw">#foss4g</a> tools for this they like? Last time we tried pgRouting (yrs ago) it didn&#39;t feel fully formed yet, <a href="https://twitter.com/hashtag/gischat?src=hash&amp;ref_src=twsrc%5Etfw">#gischat</a></p>&mdash; Zev Ross (@zevross) <a href="https://twitter.com/zevross/status/1089908839816794118?ref_src=twsrc%5Etfw">January 28, 2019</a></blockquote></center> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+class: center, middle
+
+.pull-left[
 ![](https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
-<img src="https://raw.githubusercontent.com/thomasp85/tidygraph/master/man/figures/logo.png" style="width: 17%"/>
+]
+
+--
+
+.pull-right[
+<img src="https://raw.githubusercontent.com/thomasp85/tidygraph/master/man/figures/logo.png" style="width: 38%"/>
+]
+--
+
+## `sfnetworks`
 
 The best of both worlds!
 ---
+class: middle
 
+.pull-left-70[
+<img src="https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/sf.png" style="width: 100%"/>
+
+
+.footnote[
+Artwork by [@allison_horst](https://twitter.com/allison_horst)
+]
+]
+
+.pull-right-30[
+- Simple features for R
+- Spatial vector data (points, lines and polygons)
+- Compatible with *tidy* workflows
+- S3 classes
+]
+---
+
+![](https://avatars3.githubusercontent.com/u/3735184?s=200&v=4) igraph
+
+![](https://github.com/tidyverse/tidyverse/raw/master/man/figures/logo.png)
+
+---
 ### Installation
 
 ```{r, eval = F}
@@ -77,7 +180,7 @@ remotes::install_github("luukvdmeer/sfnetworks")
 library(sfnetworks)
 ```
 
---
+---
 
 ### `sfnetwork` class and methods
 
@@ -106,6 +209,7 @@ roxel %>%
   ) #BREAK
 ```
 
+The construction function has two main options...
 ---
 
 `r chunk_reveal(chunk_name = "plot", break_type = "non_seq", display_type = "both")`
@@ -120,3 +224,32 @@ roxel %>%
   plot() #BREAK
 ```
 
+which are better observed when plotted!
+
+---
+
+## What is out there already?
+
+--
+
+- [dodgr](https://atfutures.github.io/dodgr/)
+
+--
+
+- [cppRouting](https://github.com/vlarmet/cppRouting)
+
+--
+
+- [shp2graph](https://r-forge.r-project.org/projects/shp2graph)
+
+--
+
+- [spnetwork](https://github.com/edzer/spnetwork)
+
+--
+
+- [stplanr](https://docs.ropensci.org/stplanr/)
+
+--
+
+- ...
