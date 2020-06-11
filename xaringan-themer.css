@@ -43,19 +43,19 @@
 
   /* Colors */
   --text-color: #272822;
-  --header-color: orange;
+  --header-color: #ffa500;
   --background-color: #FFFFFF;
-  --link-color: orangered;
-  --text-bold-color: orange;
+  --link-color: #ff4500;
+  --text-bold-color: #ffa500;
   --code-highlight-color: rgba(255,255,0,0.5);
   --inverse-text-color: #FFFFFF;
-  --inverse-background-color: orange;
+  --inverse-background-color: #ffa500;
   --inverse-header-color: #FFFFFF;
-  --title-slide-background-color: orange;
+  --title-slide-background-color: #ffa500;
   --title-slide-text-color: #FFFFFF;
-  --header-background-color: orange;
+  --header-background-color: #ffa500;
   --header-background-text-color: #FFFFFF;
-  --base: orange;
+  --base: #ffa500;
   --white: #FFFFFF;
   --black: #272822;
 }
@@ -100,10 +100,10 @@ h1, h2, h3 {
 }
 .remark-inline-code {
   font-size: var(--code-inline-font-size);
-  color: orange;
+  color: #ffa500;
 }
 .remark-slide-number {
-  color: grey70;
+  color: #b3b3b3;
   opacity: 1;
   font-size: 0.9em;
 }
@@ -114,9 +114,9 @@ a, a > code {
 }
 .footnote {
   position: absolute;
-  bottom: 60px;
+  bottom: 30px;
   padding-right: 4em;
-  font-size: 0.9em;
+  font-size: 0.5em;
 }
 .remark-code-line-highlighted {
   background-color: var(--code-highlight-color);
@@ -147,10 +147,10 @@ a, a > code {
   float: left;
 }
 .left-column h2, .left-column h3 {
-  color: orange99;
+  color: #ffa50099;
 }
 .left-column h2:last-of-type, .left-column h3:last-child {
-  color: orange;
+  color: #ffa500;
 }
 .right-column {
   width: 75%;
@@ -172,7 +172,7 @@ img, video, iframe {
   max-width: 100%;
 }
 blockquote {
-  border-left: solid 5px orange80;
+  border-left: solid 5px #ffa50080;
   padding-left: 1em;
 }
 .remark-slide table {
@@ -266,4 +266,12 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .pull-right-30 {
   float: right;
   width: 28.2%;
+}
+.pull-left-30 {
+  float: left;
+  width: 28.2%;
+}
+.pull-right-70 {
+  float: right;
+  width: 65.8%;
 }

@@ -8,18 +8,21 @@ output:
     css: xaringan-themer.css
     lib_dir: libs
     nature:
-      beforeInit: "https://platform.twitter.com/widgets.js"
+      beforeInit: ["https://platform.twitter.com/widgets.js", "macro.js"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       ratio: 16:9
 ---
+class: center, middle
 
 ```{r setup, include = F}
 # This is the recommended set up for flipbooks
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+options(width = 70)
 knitr::opts_chunk$set(
-  fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
+  fig.width = 6, message = FALSE, 
+  warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
 )
 knitr::opts_knit$set(global.par = TRUE)
 #remotes::install_github(EvaMaeRey/flipbookr)
@@ -31,15 +34,20 @@ library(sfnetworks)
 
 ```{r xaringan-themer, include = F}
 style_mono_accent(
-  base_color = 'orange',
+  # hex color should be provided, or theme_xaringan doesn't work
+  base_color = '#ffa500', #orange
   title_slide_background_image = "figs/milano.png",
   background_image = "figs/milano_bg.png",
   code_font_size = '14px',
-  text_slide_number_color = 'grey70',
-  link_color = 'orangered',
+  text_slide_number_color = '#b3b3b3', #grey70
+  link_color = '#ff4500', #orangered  
+  footnote_font_size = '0.5em',
+  footnote_position_bottom = "30px",
   extra_css = list(
     ".pull-left-70" = list("float" = "left", "width" = "65.8%"),
-    ".pull-right-30" = list("float" = "right", "width" = "28.2%")
+    ".pull-right-30" = list("float" = "right", "width" = "28.2%"),
+    ".pull-left-30" = list("float" = "left", "width" = "28.2%"),
+    ".pull-right-70" = list("float" = "right", "width" = "65.8%")
   )
 )
 ```
@@ -68,29 +76,93 @@ old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks,
 # ```
 ```
 
+## Hello from the team!
+.center[
+![:scale 20%](https://avatars1.githubusercontent.com/u/26540305?s=400&u=c576e87314499815cbf698b7781ee58fd1d773e2&v=4)
+![:scale 20%](https://pbs.twimg.com/profile_images/1107610946623754240/BaNA8k1E_400x400.png)
+![:scale 20%](https://avatars1.githubusercontent.com/u/22221146?s=400&u=3683a04d3f40823162d6c1ae5c51b6c9a5c0a9a5&v=4)
+![:scale 20%](https://avatars2.githubusercontent.com/u/10034237?s=460&u=53193bed2fad4f0808b55a227f99897a8d63ebc2&v=4)
+]
+--
+.center[
+what brought us together?
+]
 ---
+class: center, middle
+
 ## Geospatial Networks
 
+--
+.pull-left[
+Road networks
+![](figs/road_network.png)
+]
+
+--
+.pull-right[
+River networks
+![](figs/river_network.png)
+]
 
 ---
+
+.pull-left-30[
 ## Geospatial in R
 
+- \#rspatial
+- sf
+- stars
+- ...
 
+]
+
+
+.pull-right-70[
+```{r geospatial_r, dpi = 350, echo = F, strip.white = T, fig.dim = c(6,5), dev.args = list(bg = 'transparent'), out.width = '100%'}
+library(ggplot2)
+ggplot() +
+  geom_sf(data = roxel) + 
+  coord_sf(label_graticule = "NE") +
+  theme(
+    axis.ticks = element_line(color = 'grey70'),
+    panel.grid = element_line(color = 'grey70', linetype = 'dotted', size = 0.5),
+    panel.background = element_rect(fill = "transparent"),
+    plot.background = element_rect(fill = "transparent", color = NA)
+  )
+```
+
+]
 ---
+
+.pull-left-30[
 ## Networks in R
 
-.pull-left[
 - igraph
 - tidygraph
 - ...
-]
-.pull-right[
-<img src="https://datascienceplus.com/wp-content/uploads/2017/07/node_clique.png" style="width: 50%"/>
 
-.footnote[
-Plot by [Shirin Glander](https://datascienceplus.com/network-analysis-of-game-of-thrones/)
 ]
+
+.pull-right-70[
+```{r network_ex, dpi = 350, echo = F, strip.white = T, fig.dim = c(5,5), dev.args = list(bg = 'transparent'), out.width = '90%'}
+library(ggraph)
+library(tidygraph)
+graph = roxel %>% as_sfnetwork(directed = F) %>% convert(to_components)
+ggraph(graph, 'focus', focus = node_is_center()) +
+  ggforce::geom_circle(
+    aes(x0 = 0, y0 = 0, r = r), 
+    data.frame(r = 1:20), colour = 'grey'
+  ) +
+  geom_edge_link() +
+  geom_node_point(color = 'orangered') +
+  coord_fixed() +
+  theme(
+    panel.background = element_rect(fill = "transparent"),
+    plot.background = element_rect(fill = "transparent", color = NA)
+  )
+```
 ]
+
 ---
 class: center, middle
 
@@ -100,40 +172,46 @@ class: center, middle
 
 ---
 
-## Why a new package?
+.center[
+## why a new package?
 
-.pull-left[
 ![](figs/so_q1.png)
 ]
---
-.pull-right[
-![](figs/so_a1.png)
+
+---
+
+.center[
+## why a new package?
+
+![:scale 80%](figs/gh_q1.png)
 ]
 
 ---
 
-## Why a new package?
-
 .center[
-![](figs/gh_q1.png)
-]
+## why a new package?
 
----
-
-## Why a new package?
-
-.center[
 ![](figs/gh_c1.png)
 ]
 
 ---
-## Why a new package?
+class: center
+## why a new package?
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">One of the biggest reasons we still have ArcGIS licenses is for Network Analysis (drive times, service areas etc). Does anyone have <a href="https://twitter.com/hashtag/foss4g?src=hash&amp;ref_src=twsrc%5Etfw">#foss4g</a> tools for this they like? Last time we tried pgRouting (yrs ago) it didn&#39;t feel fully formed yet, <a href="https://twitter.com/hashtag/gischat?src=hash&amp;ref_src=twsrc%5Etfw">#gischat</a></p>&mdash; Zev Ross (@zevross) <a href="https://twitter.com/zevross/status/1089908839816794118?ref_src=twsrc%5Etfw">January 28, 2019</a></blockquote></center> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+--
+
+...
+
+because open source can always get better!
 
 ---
 class: center, middle
 
+## What do we propose?
+
+--
 .pull-left[
 ![](https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
 ]
@@ -141,7 +219,7 @@ class: center, middle
 --
 
 .pull-right[
-<img src="https://raw.githubusercontent.com/thomasp85/tidygraph/master/man/figures/logo.png" style="width: 38%"/>
+![:scale 38%](https://raw.githubusercontent.com/thomasp85/tidygraph/master/man/figures/logo.png)
 ]
 --
 
@@ -152,28 +230,86 @@ The best of both worlds!
 class: middle
 
 .pull-left-70[
-<img src="https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/sf.png" style="width: 100%"/>
-
-
+.center[
+![:scale 80%](https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/tidyverse_celestial.png)
+]
 .footnote[
 Artwork by [@allison_horst](https://twitter.com/allison_horst)
 ]
 ]
 
 .pull-right-30[
-- Simple features for R
-- Spatial vector data (points, lines and polygons)
-- Compatible with *tidy* workflows
-- S3 classes
+### *tidy* workflows
+> In tidy data:
+1. Each variable forms a column.
+2. Each observation forms a row.
+3. Each type of observational unit forms a table.
+
+.footnote[
+Wickham, H. (2014). Tidy Data. Journal of Statistical Software, 59(10), 1 - 23. doi:http://dx.doi.org/10.18637/jss.v059.i10
+]
+
+- Supported by the *tidyverse*
+
+- Allows piping `%>%` structures 
+
+]
+
+---
+class: center, middle
+
+.pull-left-70[
+![](https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/sf.png)
+.footnote[
+Artwork by [@allison_horst](https://twitter.com/allison_horst)
+]
+]
+
+.pull-right-30[
+
+### **`sf` package**
+
+Simple features for R
+
+Spatial vector data (points, lines and polygons)
+
+Compatible with *tidy* workflows
+
+S3 classes
 ]
 ---
+class: center, middle
 
-![](https://avatars3.githubusercontent.com/u/3735184?s=200&v=4) igraph
+.pull-left-70[
+![:scale 80%](https://www.r-graph-gallery.com/339-circular-dendrogram-with-ggraph_files/figure-html/thecode8-1.png)
+.footnote[
+Plot from [R GRaph Gallery](https://www.r-graph-gallery.com/339-circular-dendrogram-with-ggraph.html)
+]
+]
 
-![](https://github.com/tidyverse/tidyverse/raw/master/man/figures/logo.png)
+.pull-right-30[
+
+### **`tidygraph` package**
+![:scale 10%](https://avatars3.githubusercontent.com/u/3735184?s=200&v=4)
+ Interfaces with [`igraph`](https://igraph.org/r/)  
+ 
+![:scale 8%](https://github.com/tidyverse/dplyr/raw/master/man/figures/logo.png)
+ Supports [`dplyr`](https://dplyr.tidyverse.org/) *verbs* 
+
+![:scale 8%](https://raw.githubusercontent.com/thomasp85/tidygraph/master/man/figures/logo.png)
+ Introduces new *verbs* specific to network data (e.g. `morph`, `bind_graphs`, `graph_join`)
+
+![:scale 8%](https://github.com/thomasp85/ggraph/raw/master/man/figures/logo.png)
+ Allows network visualization via [`ggraph`](https://ggraph.data-imaginist.com/)
+]
 
 ---
-### Installation
+class: center, middle
+
+## So, let's dive in...
+
+---
+### Installation 
 
 ```{r, eval = F}
 remotes::install_github("luukvdmeer/sfnetworks")
@@ -181,6 +317,7 @@ library(sfnetworks)
 ```
 
 ---
+class: center, middle
 
 ### `sfnetwork` class and methods
 
@@ -210,12 +347,13 @@ roxel %>%
 ```
 
 The construction function has two main options...
+
 ---
 
 `r chunk_reveal(chunk_name = "plot", break_type = "non_seq", display_type = "both")`
 
-```{r plot, include = F}
-par(mar = c(1, 1, 1, 1))
+```{r plot, include = F, dev.args = list(bg = 'transparent')}
+par(mar = c(1, 1, 1, 1), bg = NA)
 roxel %>% 
   as_sfnetwork(
     directed = F,
