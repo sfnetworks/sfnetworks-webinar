@@ -25,9 +25,9 @@ knitr::opts_chunk$set(
   warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
 )
 knitr::opts_knit$set(global.par = TRUE)
-#remotes::install_github(EvaMaeRey/flipbookr)
+# remotes::install_github("EvaMaeRey/flipbookr")
 library(flipbookr)
-#install('xaringanthemer')
+# install('xaringanthemer')
 library(xaringanthemer)
 library(sfnetworks)
 ```
