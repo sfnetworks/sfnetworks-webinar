@@ -394,13 +394,65 @@ which are better observed when plotted!
 
 ---
 
+background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&name=4096x4096)
+
 # Applications 
 
+
+---
+
+### Transport networks are spatial networks
+
+Spatial network representation in R:
+
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+
+---
+
+### Actual plans from Leeds City Council
+
+
+![](https://pbs.twimg.com/media/EZ_-A0dXgAAlBzt?format=png&name=900x900)
 
 --
 
 Many potential applications including transport planning/modelling (Robin) and road safety (Andrea)
+
+---
+
+### Example: planning where to put 'pop-up' cycleways
+
+<!-- ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png) -->
+
+```{r, out.width="70%", echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png")
+```
+
+Source: https://www.cyipt.bike/rapid
+
+
+---
+
+## Necessary ingredients to prioritise new infrastructure
+
+.pull-left[
+
+- Current travel patterns
+- Road attribute data 
+- Potential usage levels
+- Impact on overall network
+
+]
+
+.pull-right[
+
+![](https://raw.githubusercontent.com/npct/pct-team/master/figures/go-dutch-leeds-purpose.png)
+
+]
+
+--
+
+Source: https://www.pct.bike/
 
 ---
 
