@@ -391,3 +391,17 @@ which are better observed when plotted!
 --
 
 - ...
+
+---
+
+# Applications 
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+
+--
+
+Many potential applications including transport planning/modelling (Robin) and road safety (Andrea)
+
+---
+
+## Getting from A to B
