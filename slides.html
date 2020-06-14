@@ -248,6 +248,8 @@ class: center, middle
 
 ```r
 remotes::install_github("luukvdmeer/sfnetworks")
+# for development version:
+remotes::install_github("luukvdmeer/sfnetworks", ref = "develop") 
 library(sfnetworks)
 ```
 
@@ -777,7 +779,62 @@ Source: https://www.pct.bike/
 
 ## Why not use `stplanr::SpatialLinesNetwork`?
 
+.pull-left[
 
+
+- You can:
+
+
+```r
+r_stplanr = stplanr::SpatialLinesNetwork(roxel)
+```
+
+
+```r
+l = stplanr::route_local(r_stplanr, c(7.53, 51.95), c(7.54, 51.95))
+plot(r_stplanr@sl$geometry)
+plot(l$geometry, col = "red", lwd = 5, add = TRUE)
+```
+
+&lt;img src="slides_files/figure-html/unnamed-chunk-6-1.png" width="432" /&gt;
+]
+
+.pull-right[
+
+Issues with stplanr implementation:
+
+- `igraph` and `sf` parts are separate
+- Hard to access the nodes
+- Subsetting requires rebuilding the graph
+
+
+```r
+class(r_stplanr)
+```
+
+```
+[1] "sfNetwork"
+attr(,"package")
+[1] "stplanr"
+```
+
+```r
+slotNames(r_stplanr) # s4 class system
+```
+
+```
+[1] "sl"          "g"           "nb"          "weightfield"
+```
+
+]
+
+---
+
+## Statistical analysis of street networks for road safety
+
+Andrea's part
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
