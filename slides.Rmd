@@ -472,3 +472,120 @@ Source: https://www.pct.bike/
 ---
 
 ## Getting from A to B
+
+---
+
+##  Another example: formatting `sfnetwork` data for a road safety model
+
+We can use `sf`, `tidygraph`, `igraph` and several other packages for: 
+
+--
+
+- summarizing the spatial dimension of the road network using several metrics (`tidygraph`); 
+
+--
+
+- extracting the adjacency matrix of the edges, which is typically one of the ingredients in a spatial model (`igraph`); 
+
+--
+
+- subsetting the road network considering only a particular geographical area (`sf`).  
+<!-- summarize the spatial dimension of the road network through several metrics and adjacency matrices.  -->
+
+--
+
+Let's see an example but first we need to create the `sfnetwork` version of `roxel` data: 
+
+```{r}
+net <- as_sfnetwork(roxel, directed = FALSE)
+```
+
+```{r, include=FALSE}
+library(tmap)
+library(sf)
+```
+
+---
+class: center, middle
+
+### Summarizing Graph Characteristics
+
+---
+
+`r chunk_reveal(chunk_name = "nodes_degree", break_type = "user", display_type = "both", width_code = "48%", width_output = "50%")`
+
+```{r nodes_degree, include=FALSE}
+# Estimate nodes centrality degree
+net <- net %>% #BREAK
+  activate("nodes") %>% #BREAK
+  mutate(degree = centrality_degree()) #BREAK
+
+# Plot with tmap. We need to escape the nodes and 
+# edges dimension and rebuild the sf structure.
+tm_shape(net %>% activate("edges") %>% st_as_sf()) + 
+  tm_lines() + #BREAK
+tm_shape(net %>% activate("nodes") %>% st_as_sf()) + 
+  tm_dots(
+    size = 0.2,
+    col = "degree", 
+    as.count = TRUE, 
+    palette = "viridis", 
+    title = ""
+  ) + 
+tm_layout(legend.text.size = 2)
+```
+
+---
+
+`r chunk_reveal(chunk_name = "edge_betweenness", break_type = "user", display_type = "both", width_code = "48%", width_output = "50%")`
+
+```{r edge_betweenness, include=FALSE}
+# Estimate edges centrality betweenness
+net <- net %>% 
+  activate("edges") %>% #BREAK
+  mutate(
+    lengths = st_length(.),
+    betweenness = centrality_edge_betweenness(lengths)
+    ) #BREAK
+
+# Plot with tmap. We need to escape the nodes and 
+# edges dimension and rebuild the sf structure.
+tm_shape(net %>% activate("edges") %>% st_as_sf()) + 
+  tm_lines(
+    n = 8,
+    scale = 2,
+    col = "betweenness", 
+    palette = "viridis", 
+    legend.col.show = FALSE
+    ) +
+tm_shape(net %>% activate("nodes") %>% st_as_sf()) + 
+  tm_dots(size = 0.1)
+```
+
+---
+class: center, middle
+
+### Extracting the Adjacency Matrix of the edges
+
+```{r, include=FALSE}
+library(igraph)
+library(Matrix)
+
+# I have to shuffle the edges of net object otherwise the net_line_graph image
+# looks beautiful but "weird"
+net %>% 
+  activate("edges") %>% 
+  magrittr::extract(1:100, )
+```
+
+---
+
+The `line graph`. We can use this powerful idea to extract and visualize the first-order binary adjacency matrix of the edges. This type of matrix is used by a CAR or BYM spatial model. 
+
+```{r line_graph, include = FALSE}
+net_line_graph <- make_line_graph(net)
+first_order_binary_adjacency <- as_adjacency_matrix(net_line_graph)
+
+image(first_order_binary_adjacency[sample(1:851), ])
+```
+

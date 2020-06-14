@@ -4,7 +4,6 @@
     <title>Tidy Geospatial Networks in R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace" />
-    <script src="libs/header-attrs-2.2/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -14,7 +13,7 @@ class: center, middle, inverse, title-slide
 # Tidy Geospatial Networks in R
 ## Introducing the <code>sfnetworks</code> package
 ### Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace
-### 2020-06-16 (updated: 2020-06-12)
+### 2020-06-16 (updated: 2020-06-14)
 
 ---
 
@@ -270,20 +269,20 @@ geometry type:  LINESTRING
 dimension:      XY
 bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
 geographic CRS: WGS 84
-&lt;span style='color: #949494;'&gt;# A tibble: 851 x 3&lt;/span&gt;&lt;span&gt;
+&lt;span style='color: #555555;'&gt;# A tibble: 851 x 3&lt;/span&gt;&lt;span&gt;
    name          type                                         geometry
-   &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;         &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                                &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 1&lt;/span&gt;&lt;span&gt; Havixbecker … residen…       (7.533722 51.95556, 7.533461 51.95576)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 2&lt;/span&gt;&lt;span&gt; Pienersallee  seconda… (7.532442 51.95422, 7.53236 51.95377, 7.532…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 3&lt;/span&gt;&lt;span&gt; Schulte-Bern… residen… (7.532709 51.95209, 7.532823 51.95239, 7.53…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 4&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            path     (7.540063 51.94468, 7.539696 51.94479, 7.53…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 5&lt;/span&gt;&lt;span&gt; Welsingheide  residen…        (7.537673 51.9475, 7.537614 51.94562)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 6&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            footway  (7.543791 51.94733, 7.54369 51.94686, 7.543…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 7&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            footway         (7.54012 51.94478, 7.539931 51.94514)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 8&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            path     (7.53822 51.94546, 7.538131 51.94549, 7.538…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt; 9&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            track    (7.540063 51.94468, 7.540338 51.94468, 7.54…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;10&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            track    (7.5424 51.94599, 7.54205 51.94629, 7.54196…
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 841 more rows&lt;/span&gt;&lt;span&gt;
+   &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;         &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                                &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 1&lt;/span&gt;&lt;span&gt; Havixbecker ~ residen~       (7.533722 51.95556, 7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 2&lt;/span&gt;&lt;span&gt; Pienersallee  seconda~ (7.532442 51.95422, 7.53236 51.95377, 7.532~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 3&lt;/span&gt;&lt;span&gt; Schulte-Bern~ residen~ (7.532709 51.95209, 7.532823 51.95239, 7.53~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 4&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            path     (7.540063 51.94468, 7.539696 51.94479, 7.53~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 5&lt;/span&gt;&lt;span&gt; Welsingheide  residen~        (7.537673 51.9475, 7.537614 51.94562)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 6&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            footway  (7.543791 51.94733, 7.54369 51.94686, 7.543~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 7&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            footway         (7.54012 51.94478, 7.539931 51.94514)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 8&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            path     (7.53822 51.94546, 7.538131 51.94549, 7.538~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 9&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            track    (7.540063 51.94468, 7.540338 51.94468, 7.54~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;10&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;            track    (7.5424 51.94599, 7.54205 51.94629, 7.54196~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 841 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
 ]
 
@@ -304,39 +303,38 @@ roxel %&gt;%
 ]
  
 .right-output-object-user[
-&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# A sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;#&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# A directed multigraph with 14 components&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# and spatially explicit edges
 #
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
              geometry
-          &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 695 more rows&lt;/span&gt;&lt;span&gt;
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;span style='color: #555555;'&gt;#
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
    from    to name        type                                geometry
-  &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke… reside… (7.533722 51.95556, 7.533461 51.955…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall… second… (7.532442 51.95422, 7.53236 51.9537…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be… reside… (7.532709 51.95209, 7.532823 51.952…
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 848 more rows&lt;/span&gt;&lt;span&gt;
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
 ]
 
@@ -399,39 +397,38 @@ roxel %&gt;%
 ]
  
 .right-output-sfnetworks_options-non_seq[
-&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# A sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;#&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# A directed multigraph with 14 components&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# and spatially explicit edges
 #
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
              geometry
-          &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 695 more rows&lt;/span&gt;&lt;span&gt;
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;span style='color: #555555;'&gt;#
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
    from    to name        type                                geometry
-  &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke… reside… (7.533722 51.95556, 7.533461 51.955…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall… second… (7.532442 51.95422, 7.53236 51.9537…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be… reside… (7.532709 51.95209, 7.532823 51.952…
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 848 more rows&lt;/span&gt;&lt;span&gt;
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
 ]
 
@@ -451,39 +448,38 @@ roxel %&gt;%
 ]
  
 .right-output-sfnetworks_options-non_seq[
-&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# A sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;#&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# An undirected multigraph with 14 components&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# and spatially explicit edges
 #
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
              geometry
-          &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 695 more rows&lt;/span&gt;&lt;span&gt;
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;span style='color: #555555;'&gt;#
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
    from    to name        type                                geometry
-  &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke… reside… (7.533722 51.95556, 7.533461 51.955…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall… second… (7.532442 51.95422, 7.53236 51.9537…
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be… reside… (7.532709 51.95209, 7.532823 51.952…
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 848 more rows&lt;/span&gt;&lt;span&gt;
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
 ]
 
@@ -504,35 +500,34 @@ roxel %&gt;%
 ]
  
 .right-output-sfnetworks_options-non_seq[
-&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# A sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;#&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# An undirected multigraph with 14 components&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# and spatially implicit edges
 #
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+# An undirected multigraph with 14 components with spatially implicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
 #   51.9612&lt;/span&gt;&lt;span&gt;
              geometry
-          &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 695 more rows&lt;/span&gt;&lt;span&gt;
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;span style='color: #555555;'&gt;#
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# Edge Data: 851 x 4&lt;/span&gt;&lt;span&gt;
+# Edge Data: 851 x 4&lt;/span&gt;&lt;span&gt;
    from    to name                  type       
-  &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #949494;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;      
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker Strasse   residential
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee          secondary  
-&lt;/span&gt;&lt;span style='color: #BCBCBC;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Bernd-Strasse residential
-&lt;/span&gt;&lt;span style='color: #949494;'&gt;# … with 848 more rows&lt;/span&gt;&lt;span&gt;
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker Strasse   residential
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee          secondary  
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Bernd-Strasse residential
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
 ]
 
@@ -728,6 +723,274 @@ Source: https://www.pct.bike/
 ---
 
 ## Getting from A to B
+
+---
+
+##  Another example: formatting `sfnetwork` data for a road safety model
+
+We can use `sf`, `tidygraph`, `igraph` and several other packages for: 
+
+--
+
+- summarizing the spatial dimension of the road network using several metrics (`tidygraph`); 
+
+--
+
+- extracting the adjacency matrix of the edges, which is typically one of the ingredients in a spatial model (`igraph`); 
+
+--
+
+- subsetting the road network considering only a particular geographical area (`sf`).  
+&lt;!-- summarize the spatial dimension of the road network through several metrics and adjacency matrices.  --&gt;
+
+--
+
+Let's see an example but first we need to create the `sfnetwork` version of `roxel` data: 
+
+
+```r
+net &lt;- as_sfnetwork(roxel, directed = FALSE)
+```
+
+
+
+---
+class: center, middle
+
+### Summarizing Graph Characteristics
+
+---
+
+class: split-40
+count: false
+ 
+
+.left-code-nodes_degree-user[
+
+```r
+# Estimate nodes centrality degree
+*net &lt;- net
+```
+]
+ 
+.right-output-nodes_degree-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-nodes_degree-user[
+
+```r
+# Estimate nodes centrality degree
+net &lt;- net %&gt;%  
+* activate("nodes")
+```
+]
+ 
+.right-output-nodes_degree-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-nodes_degree-user[
+
+```r
+# Estimate nodes centrality degree
+net &lt;- net %&gt;%  
+  activate("nodes") %&gt;%  
+* mutate(degree = centrality_degree())
+```
+]
+ 
+.right-output-nodes_degree-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-nodes_degree-user[
+
+```r
+# Estimate nodes centrality degree
+net &lt;- net %&gt;%  
+  activate("nodes") %&gt;%  
+  mutate(degree = centrality_degree())  
+
+# Plot with tmap. We need to escape the nodes and
+# edges dimension and rebuild the sf structure.
+*tm_shape(net %&gt;% activate("edges") %&gt;% st_as_sf()) +
+* tm_lines()
+```
+]
+ 
+.right-output-nodes_degree-user[
+&lt;img src="slides_files/figure-html/nodes_degree_user_4_output-1.png" width="432" /&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-nodes_degree-user[
+
+```r
+# Estimate nodes centrality degree
+net &lt;- net %&gt;%  
+  activate("nodes") %&gt;%  
+  mutate(degree = centrality_degree())  
+
+# Plot with tmap. We need to escape the nodes and
+# edges dimension and rebuild the sf structure.
+tm_shape(net %&gt;% activate("edges") %&gt;% st_as_sf()) +  
+  tm_lines() +  
+*tm_shape(net %&gt;% activate("nodes") %&gt;% st_as_sf()) +
+* tm_dots(
+*   size = 0.2,
+*   col = "degree",
+*   as.count = TRUE,
+*   palette = "viridis",
+*   title = ""
+* ) +
+*tm_layout(legend.text.size = 2)
+```
+]
+ 
+.right-output-nodes_degree-user[
+&lt;img src="slides_files/figure-html/nodes_degree_user_5_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-code-nodes_degree-user {
+  color: #777;
+  width: 48%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-output-nodes_degree-user {
+  width: 50%;
+  float: right;
+  padding-left: 1%;
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+
+class: split-40
+count: false
+ 
+
+.left-code-edge_betweenness-user[
+
+```r
+# Estimate edges centrality betweenness
+*net &lt;- net %&gt;%
+* activate("edges")
+```
+]
+ 
+.right-output-edge_betweenness-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-edge_betweenness-user[
+
+```r
+# Estimate edges centrality betweenness
+net &lt;- net %&gt;%  
+  activate("edges") %&gt;%  
+* mutate(
+*   lengths = st_length(.),
+*   betweenness = centrality_edge_betweenness(lengths)
+*   )
+```
+]
+ 
+.right-output-edge_betweenness-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-edge_betweenness-user[
+
+```r
+# Estimate edges centrality betweenness
+net &lt;- net %&gt;%  
+  activate("edges") %&gt;%  
+  mutate(  
+    lengths = st_length(.),  
+    betweenness = centrality_edge_betweenness(lengths)  
+    )  
+
+# Plot with tmap. We need to escape the nodes and
+# edges dimension and rebuild the sf structure.
+*tm_shape(net %&gt;% activate("edges") %&gt;% st_as_sf()) +
+* tm_lines(
+*   n = 8,
+*   scale = 2,
+*   col = "betweenness",
+*   palette = "viridis",
+*   legend.col.show = FALSE
+*   ) +
+*tm_shape(net %&gt;% activate("nodes") %&gt;% st_as_sf()) +
+* tm_dots(size = 0.1)
+```
+]
+ 
+.right-output-edge_betweenness-user[
+&lt;img src="slides_files/figure-html/edge_betweenness_user_3_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-code-edge_betweenness-user {
+  color: #777;
+  width: 48%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-output-edge_betweenness-user {
+  width: 50%;
+  float: right;
+  padding-left: 1%;
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+class: center, middle
+
+### Extracting the Adjacency Matrix of the edges
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
