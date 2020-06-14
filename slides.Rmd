@@ -563,29 +563,44 @@ tm_shape(net %>% activate("nodes") %>% st_as_sf()) +
 ```
 
 ---
-class: center, middle
 
 ### Extracting the Adjacency Matrix of the edges
+
+
+We can use `igraph` and `make_line_graph`! The `line graph` of a network object is obtained by inverting the nodes with the edges. We can apply this powerful idea to extract and visualize the `first-order binary adjacency matrix of the edges`. This type of matrix is used by a CAR or BYM spatial model. 
 
 ```{r, include=FALSE}
 library(igraph)
 library(Matrix)
-
-# I have to shuffle the edges of net object otherwise the net_line_graph image
-# looks beautiful but "weird"
-net %>% 
-  activate("edges") %>% 
-  magrittr::extract(1:100, )
 ```
 
 ---
 
-The `line graph`. We can use this powerful idea to extract and visualize the first-order binary adjacency matrix of the edges. This type of matrix is used by a CAR or BYM spatial model. 
+`r chunk_reveal(chunk_name = "line_graph", break_type = "user", display_type = "both", width_code = "60%", width_output = "35%", title = "###First order binar adjacency", split = 50)`
 
 ```{r line_graph, include = FALSE}
-net_line_graph <- make_line_graph(net)
-first_order_binary_adjacency <- as_adjacency_matrix(net_line_graph)
+# Create the line graph
+net_line_graph <- make_line_graph(net) #BREAK
+
+# Extract the first order binary adjacency matrix 
+first_order_binary_adjacency <- net_line_graph %>% 
+  as_adjacency_matrix() #BREAK
 
 image(first_order_binary_adjacency[sample(1:851), ])
+```
+
+---
+
+`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_code = "45%", width_output = "52%", title = "###Second order binar adjacency")`
+
+```{r line_graph2, include=FALSE}
+# Similar idea for second order binary adjacency
+ego2_net <- ego(net_line_graph, 2) #BREAK
+
+second_order_binary_adjacency <- ego2_net %>% 
+  graph_from_adj_list() %>% 
+  as_adjacency_matrix() #BREAK
+
+image(second_order_binary_adjacency[sample(1:851), ])
 ```
 

@@ -986,11 +986,171 @@ net &lt;- net %&gt;%
 
 
 ---
-class: center, middle
 
 ### Extracting the Adjacency Matrix of the edges
 
+
+We can use `igraph` and `make_line_graph`! The `line graph` of a network object is obtained by inverting the nodes with the edges. We can apply this powerful idea to extract and visualize the `first-order binary adjacency matrix of the edges`. This type of matrix is used by a CAR or BYM spatial model. 
+
+
+
 ---
+
+class: split-50
+count: false
+ 
+###First order binar adjacency
+.left-code-line_graph-user[
+
+```r
+# Create the line graph
+*net_line_graph &lt;- make_line_graph(net)
+```
+]
+ 
+.right-output-line_graph-user[
+
+]
+
+---
+class: split-50
+count: false
+ 
+###First order binar adjacency
+.left-code-line_graph-user[
+
+```r
+# Create the line graph
+net_line_graph &lt;- make_line_graph(net)  
+
+# Extract the first order binary adjacency matrix
+*first_order_binary_adjacency &lt;- net_line_graph %&gt;%
+* as_adjacency_matrix()
+```
+]
+ 
+.right-output-line_graph-user[
+
+]
+
+---
+class: split-50
+count: false
+ 
+###First order binar adjacency
+.left-code-line_graph-user[
+
+```r
+# Create the line graph
+net_line_graph &lt;- make_line_graph(net)  
+
+# Extract the first order binary adjacency matrix
+first_order_binary_adjacency &lt;- net_line_graph %&gt;%  
+  as_adjacency_matrix()  
+
+*image(first_order_binary_adjacency[sample(1:851), ])
+```
+]
+ 
+.right-output-line_graph-user[
+&lt;img src="slides_files/figure-html/line_graph_user_3_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-code-line_graph-user {
+  color: #777;
+  width: 60%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-output-line_graph-user {
+  width: 35%;
+  float: right;
+  padding-left: 1%;
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+
+class: split-40
+count: false
+ 
+###Second order binar adjacency
+.left-code-line_graph2-user[
+
+```r
+# Similar idea for second order binary adjacency
+*ego2_net &lt;- ego(net_line_graph, 2)
+```
+]
+ 
+.right-output-line_graph2-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+###Second order binar adjacency
+.left-code-line_graph2-user[
+
+```r
+# Similar idea for second order binary adjacency
+ego2_net &lt;- ego(net_line_graph, 2)  
+
+*second_order_binary_adjacency &lt;- ego2_net %&gt;%
+* graph_from_adj_list() %&gt;%
+* as_adjacency_matrix()
+```
+]
+ 
+.right-output-line_graph2-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+###Second order binar adjacency
+.left-code-line_graph2-user[
+
+```r
+# Similar idea for second order binary adjacency
+ego2_net &lt;- ego(net_line_graph, 2)  
+
+second_order_binary_adjacency &lt;- ego2_net %&gt;%  
+  graph_from_adj_list() %&gt;%  
+  as_adjacency_matrix()  
+
+*image(second_order_binary_adjacency[sample(1:851), ])
+```
+]
+ 
+.right-output-line_graph2-user[
+&lt;img src="slides_files/figure-html/line_graph2_user_3_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-code-line_graph2-user {
+  color: #777;
+  width: 45%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-output-line_graph2-user {
+  width: 52%;
+  float: right;
+  padding-left: 1%;
+}
+&lt;/style&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
