@@ -591,7 +591,7 @@ image(first_order_binary_adjacency[sample(1:851), ])
 
 ---
 
-`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_code = "45%", width_output = "52%", title = "###Second order binar adjacency")`
+`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_code = "55%", width_output = "42%", title = "###Second order binar adjacency", split = 50)`
 
 ```{r line_graph2, include=FALSE}
 # Similar idea for second order binary adjacency
