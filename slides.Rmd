@@ -30,6 +30,8 @@ library(flipbookr)
 # install('xaringanthemer')
 library(xaringanthemer)
 library(sfnetworks)
+library(sf)
+library(tidygraph)
 ```
 
 ```{r xaringan-themer, include = F}
@@ -43,11 +45,13 @@ style_mono_accent(
   link_color = '#ff4500', #orangered  
   footnote_font_size = '0.5em',
   footnote_position_bottom = "30px",
+  code_highlight_color = "#ffedcc", #faded-orange
   extra_css = list(
     ".pull-left-70" = list("float" = "left", "width" = "65.8%"),
     ".pull-right-30" = list("float" = "right", "width" = "28.2%"),
     ".pull-left-30" = list("float" = "left", "width" = "28.2%"),
-    ".pull-right-70" = list("float" = "right", "width" = "65.8%")
+    ".pull-right-70" = list("float" = "right", "width" = "65.8%"),
+    ".orange" = list("color" = "#ffa500")
   )
 )
 ```
@@ -109,9 +113,14 @@ River networks
 .pull-left-30[
 ## Geospatial in R
 
-- \#rspatial
-- sf
-- stars
+- [\#rspatial](https://twitter.com/search?q=%23rspatial)
+- `sf`
+- `stars`
+- `rgeos`
+- `rgdal`
+- `tmap`
+- `ggmap`
+- `mapview`
 - ...
 
 ]
@@ -137,16 +146,19 @@ ggplot() +
 .pull-left-30[
 ## Networks in R
 
-- igraph
-- tidygraph
+- [statnet](http://statnet.org/)
+- `igraph`
+- `tidygraph`
+- `qgraph`
+- `ggraph`
+- `visNetwork`
+- `networkD3`
 - ...
-
 ]
 
 .pull-right-70[
 ```{r network_ex, dpi = 350, echo = F, strip.white = T, fig.dim = c(5,5), dev.args = list(bg = 'transparent'), out.width = '90%'}
 library(ggraph)
-library(tidygraph)
 graph = roxel %>% as_sfnetwork(directed = F) %>% convert(to_components)
 ggraph(graph, 'focus', focus = node_is_center()) +
   ggforce::geom_circle(
@@ -311,15 +323,97 @@ class: center, middle
 ---
 ### Installation 
 
+Install the more stable master branch with:
+
 ```{r, eval = F}
 remotes::install_github("luukvdmeer/sfnetworks")
-library(sfnetworks)
+```
+
+Install the develop branch, where most of the development takes place and where PRs should be directed, as follows:
+
+```{r, eval = F}
+remotes::install_github("luukvdmeer/sfnetworks", ref = "develop")
 ```
 
 ---
-class: center, middle
+## `sfnetwork` data structure
 
-### `sfnetwork` class and methods
+### Philosophy
+
+--
+
+> "... a close approximation of tidyness for relational data is two tidy data frames, one describing the node data and one describing the edge data."
+
+`tidygraph` introduction.
+
+--
+
+<br>
+<br>
+
+> “A close approximation of tidyness for relational .orange[*geospatial data*] is two .orange[*sf objects*], one describing the node data and one describing the edge data.”
+
+`sfnetworks` adaption.
+
+---
+## `sfnetwork` data structure
+
+### Construction
+
+- Nodes: `sf` object with `POINT` geometries
+
+- Edges: *to* and *from* column with end-points
+
+   + spatially explicit: `sf` object with `LINESTRING` geometries
+
+   + spatially implicit: `data.frame` or `tibble` object
+
+- Same CRS!
+
+---
+`r chunk_reveal(chunk_name = "toyexample", break_type = "user", display_type = "both")`
+
+```{r toyexample, include = F}
+st_sfc(
+    st_point(c(7, 51)),
+    st_point(c(7, 52)),
+    st_point(c(8, 52)),
+    crs = 4326
+  ) %>% st_sf() -> #BREAK
+  node #BREAK
+
+st_sfc(
+  st_cast(st_union(p1,p2), "LINESTRING"),
+  st_cast(st_union(p1,p3), "LINESTRING"),
+  st_cast(st_union(p2,p3), "LINESTRING"),
+  crs = 4326
+) %>% st_sf() -> #BREAK
+  edges #BREAK
+
+edges$from = c(1, 1, 2)
+edges$to = c(2, 3, 3) #BREAK
+
+sfnetwork(nodes, edges, directed = FALSE) #BREAK
+```
+
+---
+## `sfnetwork` data structure
+
+### Foreign objects
+
+To convert foreign objects into an `sfnetwork` with `as_sfnetwork`, there are two conditions:
+
+- Object is or can be converted to a `tbl_graph`.
+
+- At least the nodes can be converted to an `sf` object.
+
+--
+
+Or just an `sf` object with `POINT` or `LINESTRING` geometry... but some assumptions are made! 
+
+--
+
+Since `sfnetwork 0.3`, `dodgr_streetnet` from `dodgr` and `SpatialLinesNetwork` from `stplanr` are also supported!
 
 ---
 
@@ -335,6 +429,14 @@ roxel %>% #BREAK
 ```
 
 ---
+## `sfnetwork` data structure
+
+### Arguments for construction
+
+- directed graph?
+
+- spatially explicit edges?
+---
 
 `r chunk_reveal(chunk_name = "sfnetworks_options", break_type = "non_seq", display_type = "both")`
 
@@ -346,7 +448,12 @@ roxel %>%
   ) #BREAK
 ```
 
-The construction function has two main options...
+---
+## `sfnetwork` data structure
+
+### Arguments for construction
+
+better observed when plotted...
 
 ---
 
@@ -362,8 +469,29 @@ roxel %>%
   plot() #BREAK
 ```
 
-which are better observed when plotted!
+---
+## `sfnetwork` data structure
 
+### Activation and extraction
+
+Same principle as `tidygraph` with the `activate` verb
+
+---
+`r chunk_reveal(chunk_name = "activate", break_type = "user", display_type = "both")`
+
+```{r activate, include = F}
+roxel %>% 
+  as_sfnetwork() %>% #BREAK
+  activate('edges')  %>% #BREAK
+  st_as_sf() #BREAK
+
+roxel %>% 
+  as_sfnetwork(
+    edges_as_lines = F 
+  ) %>% 
+  activate('edges')  %>% 
+  as_tibble() #BREAK  
+```
 ---
 
 ## What is out there already?
