@@ -446,25 +446,44 @@ Or just an `sf` object with `POINT` or `LINESTRING` geometry
 
 ---
 
-`r chunk_reveal(chunk_name = "object", break_type = "user", display_type = "both")`
+`r chunk_reveal(chunk_name = "object1", break_type = "user", display_type = "both")`
 
-```{r object, include = F}
+```{r object1, include = F}
 roxel %>% #BREAK
   as_sfnetwork() -> #BREAK
   net
+```
 
+---
+
+`r chunk_reveal(chunk_name = "object2", break_type = "user", display_type = "both")`
+
+```{r object2, include = F}
 net %>% 
   st_crs() #BREAK
 
 net %>% 
   st_transform(3035) #BREAK
+```
 
+---
+
+`r chunk_reveal(chunk_name = "object4", break_type = "user", display_type = "both")`
+
+```{r object4, include = F}
 net %>% 
   sf_attr("sf_column", "nodes") #BREAK
   
 net %>% 
   sf_attr("agr", "edges") # BREAK
- 
+```
+
+---
+
+`r chunk_reveal(chunk_name = "object5", break_type = "user", display_type = "both")`
+
+```{r object5, include = F, dev.args = list(bg = 'transparent'), out.width = '100%'}
+par(mar = c(1, 1, 1, 1), bg = NA)
 plot(net) #BREAK
 
 net %>% 
@@ -476,7 +495,7 @@ net %>%
 .pull-left-30[
 ## Graph operations
 
-`sfnetwork` objects subclass `tbl_graph` objects, so any `igraph` algorithm and tydy wrappers from `tidygraph` are supported. 
+`sfnetwork` objects subclass `tbl_graph` objects, so any `igraph` algorithm and tidy wrappers from `tidygraph` are supported. 
 
 Check out the possibilities on the [tidygraph introduction](https://www.data-imaginist.com/2017/introducing-tidygraph/).
 ]
@@ -544,7 +563,6 @@ net %>%
 ```{r filter, include = F, fig.width = 15, dev.args = list(bg = 'transparent')}
 net = roxel %>% as_sfnetwork(directed = F) #BREAK
 
-par(mar = c(1, 1, 1, 1), bg = NA)
 plot(net) #BREAK
 
 rect = st_multipoint(c(
@@ -864,8 +882,156 @@ slotNames(r_stplanr) # s4 class system
 
 ---
 
-## Statistical analysis of street networks for road safety
-
-Andrea's part
+## Getting from A to B
 
 ---
+
+##  Another example: formatting `sfnetwork` data for a road safety model
+
+We can use `sf`, `tidygraph`, `igraph` and several other packages for: 
+
+--
+
+- summarizing the spatial dimension of the road network using several metrics (`tidygraph`); 
+
+--
+
+- extracting the adjacency matrix of the edges, which is typically one of the ingredients in a spatial model (`igraph`); 
+
+--
+
+- subsetting the road network considering only a particular geographical area (`sf`).  
+<!-- summarize the spatial dimension of the road network through several metrics and adjacency matrices.  -->
+
+--
+
+Let's see an example but first we need to create the `sfnetwork` version of `roxel` data: 
+
+```{r}
+net <- as_sfnetwork(roxel, directed = FALSE)
+```
+
+```{r, include=FALSE}
+library(tmap)
+library(sf)
+```
+
+---
+class: center, middle
+
+### Summarizing Graph Characteristics
+
+---
+
+`r chunk_reveal(chunk_name = "nodes_degree", break_type = "user", display_type = "both", width_left = "48%", width_right = "50%")`
+
+```{r nodes_degree, include=FALSE}
+# Estimate nodes centrality degree
+net <- net %>% #BREAK
+  activate("nodes") %>% #BREAK
+  mutate(degree = centrality_degree()) #BREAK
+
+# Plot with tmap. We need to escape the nodes and 
+# edges dimension and rebuild the sf structure.
+tm_shape(net %>% activate("edges") %>% st_as_sf()) + 
+  tm_lines() + #BREAK
+tm_shape(net %>% activate("nodes") %>% st_as_sf()) + 
+  tm_dots(
+    size = 0.2,
+    col = "degree", 
+    as.count = TRUE, 
+    palette = "viridis", 
+    title = ""
+  ) + 
+tm_layout(legend.text.size = 2)
+```
+
+---
+
+`r chunk_reveal(chunk_name = "edge_betweenness", break_type = "user", display_type = "both", width_left = "48%", width_right = "50%")`
+
+```{r edge_betweenness, include=FALSE}
+# Estimate edges centrality betweenness
+net <- net %>% 
+  activate("edges") %>% #BREAK
+  mutate(
+    lengths = st_length(.),
+    betweenness = centrality_edge_betweenness(lengths)
+    ) #BREAK
+
+# Plot with tmap. We need to escape the nodes and 
+# edges dimension and rebuild the sf structure.
+tm_shape(net %>% activate("edges") %>% st_as_sf()) + 
+  tm_lines(
+    n = 8,
+    scale = 2,
+    col = "betweenness", 
+    palette = "viridis", 
+    legend.col.show = FALSE
+    ) +
+tm_shape(net %>% activate("nodes") %>% st_as_sf()) + 
+  tm_dots(size = 0.1)
+```
+
+---
+
+### Extracting the Adjacency Matrix of the edges
+
+We can use `igraph` and `make_line_graph`! The `line graph` of a network object is obtained by inverting the nodes with the edges. We can apply this powerful idea to extract and visualize the `first-order binary adjacency matrix of the edges`. This type of matrix is used by a CAR or BYM spatial model. 
+
+```{r, include=FALSE}
+library(igraph)
+library(Matrix)
+```
+
+---
+
+`r chunk_reveal(chunk_name = "line_graph", break_type = "user", display_type = "both", width_left = "60%", width_right = "35%", title = "###First order binary adjacency", split = 50)`
+
+```{r line_graph, include = FALSE, dev.args = list(bg = 'transparent')}
+# Create the line graph
+net_line_graph <- make_line_graph(net) #BREAK
+
+# Extract the first order binary adjacency matrix 
+first_order_binary_adjacency <- net_line_graph %>% 
+  as_adjacency_matrix() #BREAK
+
+image(
+  first_order_binary_adjacency[sample(1:851), ], 
+  xlab = list(label = "Columns", cex = 3), 
+  ylab = list(label = "Row", cex = 3), 
+  scales = list(cex = 3), 
+  sub = ""
+  )
+```
+
+---
+
+`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_left = "55%", width_right = "42%", title = "###Second order binary adjacency", split = 50)`
+
+```{r line_graph2, include=FALSE, dev.args = list(bg = 'transparent')}
+# Similar idea for second order binary adjacency
+ego2_net <- ego(net_line_graph, 2) #BREAK
+
+second_order_binary_adjacency <- ego2_net %>% 
+  graph_from_adj_list() %>% 
+  as_adjacency_matrix() #BREAK
+
+image(
+  second_order_binary_adjacency[sample(1:851), ], 
+  xlab = list(label = "Columns", cex = 3), 
+  ylab = list(label = "Row", cex = 3), 
+  scales = list(cex = 3), 
+  sub = ""
+  )
+```
+
+
+---
+class: center, middle
+
+### Thank you for you interest!
+
+#### Questions?
+
+.note[Slides powered by [xaringan](https://github.com/yihui/xaringan), [xaringanthemer](https://github.com/gadenbuie/xaringanthemer) and [flipbookr](https://github.com/EvaMaeRey/flipbookr)]
