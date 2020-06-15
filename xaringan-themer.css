@@ -47,7 +47,7 @@
   --background-color: #FFFFFF;
   --link-color: #ff4500;
   --text-bold-color: #ffa500;
-  --code-highlight-color: rgba(255,255,0,0.5);
+  --code-highlight-color: #ffedcc;
   --inverse-text-color: #FFFFFF;
   --inverse-background-color: #ffa500;
   --inverse-header-color: #FFFFFF;
@@ -274,4 +274,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .pull-right-70 {
   float: right;
   width: 65.8%;
+}
+.orange {
+  color: #ffa500;
 }

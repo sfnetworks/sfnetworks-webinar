@@ -59,9 +59,11 @@ River networks
 ![](figs/river_network.png)
 ]
 
+--
+
 [**spnethack**](https://github.com/sfnetworks/spnethack) organised in Munster, 2019
 
-Building on Luuk's MSc project while Robin was visited [ifgi](https://www.uni-muenster.de/Geoinformatics/en/) 
+Building on Luuk's MSc project while Robin was visiting [ifgi](https://www.uni-muenster.de/Geoinformatics/en/) 
 
 Result: [Spatial networks in R with sf and tidygraph](https://www.r-spatial.org/r/2019/09/26/spatial-networks.html) blog post
 
@@ -70,9 +72,14 @@ Result: [Spatial networks in R with sf and tidygraph](https://www.r-spatial.org/
 .pull-left-30[
 ## Geospatial in R
 
-- \#rspatial
-- sf
-- stars
+- [\#rspatial](https://twitter.com/search?q=%23rspatial)
+- `sf`
+- `stars`
+- `rgeos`
+- `rgdal`
+- `tmap`
+- `ggmap`
+- `mapview`
 - ...
 
 ]
@@ -87,10 +94,14 @@ Result: [Spatial networks in R with sf and tidygraph](https://www.r-spatial.org/
 .pull-left-30[
 ## Networks in R
 
-- igraph
-- tidygraph
+- [statnet](http://statnet.org/)
+- `igraph`
+- `tidygraph`
+- `qgraph`
+- `ggraph`
+- `visNetwork`
+- `networkD3`
 - ...
-
 ]
 
 .pull-right-70[
@@ -245,18 +256,323 @@ class: center, middle
 ---
 ### Installation 
 
+Install the more stable master branch with:
+
 
 ```r
 remotes::install_github("luukvdmeer/sfnetworks")
-# for development version:
-remotes::install_github("luukvdmeer/sfnetworks", ref = "develop") 
-library(sfnetworks)
+```
+
+Install the develop branch, where most of the development takes place and where PRs should be directed:
+
+
+```r
+remotes::install_github("luukvdmeer/sfnetworks", ref = "develop")
 ```
 
 ---
-class: center, middle
+## `sfnetwork` data structure
 
-### `sfnetwork` class and methods
+### Philosophy
+
+--
+
+&gt; "... a close approximation of tidyness for relational data is two tidy data frames, one describing the node data and one describing the edge data."
+
+`tidygraph` introduction.
+
+--
+
+&lt;br&gt;
+&lt;br&gt;
+
+&gt; “A close approximation of tidyness for relational .orange[*geospatial data*] is two .orange[*sf objects*], one describing the node data and one describing the edge data.”
+
+`sfnetworks` adaption.
+
+---
+## `sfnetwork` data structure
+
+### Construction
+
+- Nodes: `sf` object with `POINT` geometries
+
+- Edges: *to* and *from* column with end-points
+
+   + spatially explicit: `sf` object with `LINESTRING` geometries
+
+   + spatially implicit: `data.frame` or `tibble` object
+
+- Same CRS!
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-toyexample-user[
+
+```r
+*p1 = st_point(c(7, 51))
+*p2 = st_point(c(7, 52))
+*p3 = st_point(c(8, 52))
+
+*st_sfc(
+*   p1, p2, p3,
+*   crs = 4326
+* ) %&gt;% st_sf()
+```
+]
+ 
+.right-output-toyexample-user[
+
+```
+Simple feature collection with 3 features and 0 fields
+geometry type:  POINT
+dimension:      XY
+bbox:           xmin: 7 ymin: 51 xmax: 8 ymax: 52
+geographic CRS: WGS 84
+      geometry
+1 POINT (7 51)
+2 POINT (7 52)
+3 POINT (8 52)
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-toyexample-user[
+
+```r
+p1 = st_point(c(7, 51))  
+p2 = st_point(c(7, 52))  
+p3 = st_point(c(8, 52))  
+
+st_sfc(  
+    p1, p2, p3,  
+    crs = 4326  
+  ) %&gt;% st_sf() -&gt;  
+* nodes
+```
+]
+ 
+.right-output-toyexample-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-toyexample-user[
+
+```r
+p1 = st_point(c(7, 51))  
+p2 = st_point(c(7, 52))  
+p3 = st_point(c(8, 52))  
+
+st_sfc(  
+    p1, p2, p3,  
+    crs = 4326  
+  ) %&gt;% st_sf() -&gt;  
+  nodes  
+
+*st_sfc(
+* st_cast(st_union(p1,p2), "LINESTRING"),
+* st_cast(st_union(p1,p3), "LINESTRING"),
+* st_cast(st_union(p2,p3), "LINESTRING"),
+* crs = 4326
+*) %&gt;% st_sf()
+```
+]
+ 
+.right-output-toyexample-user[
+
+```
+Simple feature collection with 3 features and 0 fields
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 7 ymin: 51 xmax: 8 ymax: 52
+geographic CRS: WGS 84
+                 geometry
+1 LINESTRING (7 51, 7 52)
+2 LINESTRING (7 51, 8 52)
+3 LINESTRING (7 52, 8 52)
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-toyexample-user[
+
+```r
+p1 = st_point(c(7, 51))  
+p2 = st_point(c(7, 52))  
+p3 = st_point(c(8, 52))  
+
+st_sfc(  
+    p1, p2, p3,  
+    crs = 4326  
+  ) %&gt;% st_sf() -&gt;  
+  nodes  
+
+st_sfc(  
+  st_cast(st_union(p1,p2), "LINESTRING"),  
+  st_cast(st_union(p1,p3), "LINESTRING"),  
+  st_cast(st_union(p2,p3), "LINESTRING"),  
+  crs = 4326  
+) %&gt;% st_sf() -&gt;  
+* edges
+```
+]
+ 
+.right-output-toyexample-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-toyexample-user[
+
+```r
+p1 = st_point(c(7, 51))  
+p2 = st_point(c(7, 52))  
+p3 = st_point(c(8, 52))  
+
+st_sfc(  
+    p1, p2, p3,  
+    crs = 4326  
+  ) %&gt;% st_sf() -&gt;  
+  nodes  
+
+st_sfc(  
+  st_cast(st_union(p1,p2), "LINESTRING"),  
+  st_cast(st_union(p1,p3), "LINESTRING"),  
+  st_cast(st_union(p2,p3), "LINESTRING"),  
+  crs = 4326  
+) %&gt;% st_sf() -&gt;  
+  edges  
+
+*edges$from = c(1, 1, 2)
+*edges$to = c(2, 3, 3)
+```
+]
+ 
+.right-output-toyexample-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-toyexample-user[
+
+```r
+p1 = st_point(c(7, 51))  
+p2 = st_point(c(7, 52))  
+p3 = st_point(c(8, 52))  
+
+st_sfc(  
+    p1, p2, p3,  
+    crs = 4326  
+  ) %&gt;% st_sf() -&gt;  
+  nodes  
+
+st_sfc(  
+  st_cast(st_union(p1,p2), "LINESTRING"),  
+  st_cast(st_union(p1,p3), "LINESTRING"),  
+  st_cast(st_union(p2,p3), "LINESTRING"),  
+  crs = 4326  
+) %&gt;% st_sf() -&gt;  
+  edges  
+
+edges$from = c(1, 1, 2)  
+edges$to = c(2, 3, 3)  
+
+*sfnetwork(nodes, edges, directed = FALSE)
+```
+]
+ 
+.right-output-toyexample-user[
+
+```
+# An sfnetwork with 3 nodes and 3 edges
+#
+# CRS:  EPSG:4326 
+#
+# An undirected simple graph with 1 component with spatially explicit edges
+#
+# Node Data:     3 x 1 (active)
+# Geometry type: POINT
+# Dimension:     XY
+# Bounding box:  xmin: 7 ymin: 51 xmax: 8 ymax: 52
+     geometry
+  &lt;POINT [°]&gt;
+1      (7 51)
+2      (7 52)
+3      (8 52)
+#
+# Edge Data:     3 x 3
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: 7 ymin: 51 xmax: 8 ymax: 52
+   from    to         geometry
+  &lt;int&gt; &lt;int&gt; &lt;LINESTRING [°]&gt;
+1     1     2     (7 51, 7 52)
+2     1     3     (7 51, 8 52)
+3     2     3     (7 52, 8 52)
+```
+]
+
+&lt;style&gt;
+.left-code-toyexample-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-output-toyexample-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+## `sfnetwork` data structure
+
+### Foreign objects
+
+To convert foreign objects into an `sfnetwork` with `as_sfnetwork`, there are two conditions:
+
+- Object is or can be converted to a `tbl_graph`.
+
+- At least the nodes can be converted to an `sf` object.
+
+--
+
+Or just an `sf` object with `POINT` or `LINESTRING` geometry... but some assumptions are made! 
+
+--
+
+More methods were recently added for `sfNetwork`, `linnet` and `psp` objects!
 
 ---
 
@@ -391,6 +707,14 @@ roxel %&gt;%
 
 
 
+---
+## `sfnetwork` data structure
+
+### Arguments for construction
+
+- directed graph?
+
+- spatially explicit edges?
 ---
 
 class: split-40
@@ -560,7 +884,12 @@ roxel %&gt;%
 
 
 
-The construction function has two main options...
+---
+## `sfnetwork` data structure
+
+### Arguments for construction
+
+better observed when plotted...
 
 ---
 
@@ -625,7 +954,237 @@ roxel %&gt;%
 
 
 
-which are better observed when plotted!
+---
+## `sfnetwork` data structure
+
+### Activation and extraction
+
+Same principle as `tidygraph` with the `activate` verb
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-activate-user[
+
+```r
+*roxel %&gt;%
+* as_sfnetwork()
+```
+]
+ 
+.right-output-activate-user[
+
+```
+# An sfnetwork with 701 nodes and 851 edges
+#
+# CRS:  EPSG:4326 
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)
+# Geometry type: POINT
+# Dimension:     XY
+# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612
+             geometry
+          &lt;POINT [°]&gt;
+1 (7.533722 51.95556)
+2 (7.533461 51.95576)
+3 (7.532442 51.95422)
+4  (7.53209 51.95328)
+5 (7.532709 51.95209)
+6 (7.532869 51.95257)
+# ... with 695 more rows
+#
+# Edge Data:     851 x 5
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612
+   from    to name        type                                geometry
+  &lt;int&gt; &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
+1     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
+2     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
+3     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
+# ... with 848 more rows
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-activate-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() %&gt;%  
+* activate('edges')
+```
+]
+ 
+.right-output-activate-user[
+
+```
+# An sfnetwork with 701 nodes and 851 edges
+#
+# CRS:  EPSG:4326 
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Edge Data:     851 x 5 (active)
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612
+   from    to name       type                                 geometry
+  &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;                        &lt;LINESTRING [°]&gt;
+1     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.9557~
+2     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.95377~
+3     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.9523~
+4     7     8 &lt;NA&gt;       path    (7.540063 51.94468, 7.539696 51.9447~
+5     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.94562)
+6    11    12 &lt;NA&gt;       footway (7.543791 51.94733, 7.54369 51.94686~
+# ... with 845 more rows
+#
+# Node Data:     701 x 1
+# Geometry type: POINT
+# Dimension:     XY
+# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612
+             geometry
+          &lt;POINT [°]&gt;
+1 (7.533722 51.95556)
+2 (7.533461 51.95576)
+3 (7.532442 51.95422)
+# ... with 698 more rows
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-activate-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() %&gt;%  
+  activate('edges')  %&gt;%  
+* st_as_sf()
+```
+]
+ 
+.right-output-activate-user[
+
+```
+Simple feature collection with 851 features and 4 fields
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
+geographic CRS: WGS 84
+# A tibble: 851 x 5
+    from    to name       type                                geometry
+   &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
+ 1     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.955~
+ 2     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.9537~
+ 3     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.952~
+ 4     7     8 &lt;NA&gt;       path    (7.540063 51.94468, 7.539696 51.944~
+ 5     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.9456~
+ 6    11    12 &lt;NA&gt;       footway (7.543791 51.94733, 7.54369 51.9468~
+ 7    13    14 &lt;NA&gt;       footway (7.54012 51.94478, 7.539931 51.9451~
+ 8     8    10 &lt;NA&gt;       path    (7.53822 51.94546, 7.538131 51.9454~
+ 9     7    15 &lt;NA&gt;       track   (7.540063 51.94468, 7.540338 51.944~
+10    16    17 &lt;NA&gt;       track   (7.5424 51.94599, 7.54205 51.94629,~
+# ... with 841 more rows
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-code-activate-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() %&gt;%  
+  activate('edges')  %&gt;%  
+  st_as_sf()  
+
+*roxel %&gt;%
+* as_sfnetwork(
+*   edges_as_lines = F
+* ) %&gt;%
+* activate('edges')  %&gt;%
+* as_tibble()
+```
+]
+ 
+.right-output-activate-user[
+
+```
+Simple feature collection with 851 features and 4 fields
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
+geographic CRS: WGS 84
+# A tibble: 851 x 5
+    from    to name       type                                geometry
+   &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
+ 1     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.955~
+ 2     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.9537~
+ 3     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.952~
+ 4     7     8 &lt;NA&gt;       path    (7.540063 51.94468, 7.539696 51.944~
+ 5     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.9456~
+ 6    11    12 &lt;NA&gt;       footway (7.543791 51.94733, 7.54369 51.9468~
+ 7    13    14 &lt;NA&gt;       footway (7.54012 51.94478, 7.539931 51.9451~
+ 8     8    10 &lt;NA&gt;       path    (7.53822 51.94546, 7.538131 51.9454~
+ 9     7    15 &lt;NA&gt;       track   (7.540063 51.94468, 7.540338 51.944~
+10    16    17 &lt;NA&gt;       track   (7.5424 51.94599, 7.54205 51.94629,~
+# ... with 841 more rows
+```
+
+```
+# A tibble: 851 x 4
+    from    to name                  type       
+   &lt;int&gt; &lt;int&gt; &lt;fct&gt;                 &lt;fct&gt;      
+ 1     1     2 Havixbecker Strasse   residential
+ 2     3     4 Pienersallee          secondary  
+ 3     5     6 Schulte-Bernd-Strasse residential
+ 4     7     8 &lt;NA&gt;                  path       
+ 5     9    10 Welsingheide          residential
+ 6    11    12 &lt;NA&gt;                  footway    
+ 7    13    14 &lt;NA&gt;                  footway    
+ 8     8    10 &lt;NA&gt;                  path       
+ 9     7    15 &lt;NA&gt;                  track      
+10    16    17 &lt;NA&gt;                  track      
+# ... with 841 more rows
+```
+]
+
+&lt;style&gt;
+.left-code-activate-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-output-activate-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+&lt;/style&gt;
+
+
+
 
 ---
 
@@ -792,7 +1351,7 @@ plot(r_stplanr@sl$geometry)
 plot(l$geometry, col = "red", lwd = 5, add = TRUE)
 ```
 
-&lt;img src="slides_files/figure-html/unnamed-chunk-6-1.png" width="432" /&gt;
+&lt;img src="slides_files/figure-html/unnamed-chunk-7-1.png" width="432" /&gt;
 ]
 
 .pull-right[
