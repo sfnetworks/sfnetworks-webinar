@@ -21,16 +21,21 @@ class: center, middle
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
 options(width = 70)
 knitr::opts_chunk$set(
-  fig.width = 6, message = FALSE, 
-  warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
+  fig.width = 6, message = TRUE, fig.showtext = TRUE,
+  warning = FALSE, comment = "", cache = TRUE, fig.retina = 3
 )
 knitr::opts_knit$set(global.par = TRUE)
+# remotes::install_github("luukvdmeer/sfnetworks")
 # remotes::install_github("EvaMaeRey/flipbookr")
 library(flipbookr)
 # install('xaringanthemer')
 library(xaringanthemer)
 library(sfnetworks)
+library(dplyr)
+library(sf)
+library(tidygraph)
 ```
+
 
 ```{r xaringan-themer, include = F}
 style_mono_accent(
@@ -43,11 +48,15 @@ style_mono_accent(
   link_color = '#ff4500', #orangered  
   footnote_font_size = '0.5em',
   footnote_position_bottom = "30px",
+  code_highlight_color = "#ffedcc", #faded-orange
   extra_css = list(
     ".pull-left-70" = list("float" = "left", "width" = "65.8%"),
     ".pull-right-30" = list("float" = "right", "width" = "28.2%"),
     ".pull-left-30" = list("float" = "left", "width" = "28.2%"),
-    ".pull-right-70" = list("float" = "right", "width" = "65.8%")
+    ".pull-right-70" = list("float" = "right", "width" = "65.8%"),
+    ".orange" = list("color" = "#ffa500"),
+    ".note" = list("font-size" = "0.8em", "position" = "absolute", 
+      "bottom" = "30px", "padding-right" = "4em")
   )
 )
 ```
@@ -104,14 +113,27 @@ River networks
 ![](figs/river_network.png)
 ]
 
+--
+
+[**spnethack**](https://github.com/sfnetworks/spnethack) organised in Munster, 2019
+
+Building on Luuk's MSc project while Robin was visiting [ifgi](https://www.uni-muenster.de/Geoinformatics/en/) 
+
+Result: [Spatial networks in R with sf and tidygraph](https://www.r-spatial.org/r/2019/09/26/spatial-networks.html) blog post
+
 ---
 
 .pull-left-30[
 ## Geospatial in R
 
-- \#rspatial
-- sf
-- stars
+- [\#rspatial](https://twitter.com/search?q=%23rspatial)
+- `sf`
+- `stars`
+- `rgeos`
+- `rgdal`
+- `tmap`
+- `ggmap`
+- `mapview`
 - ...
 
 ]
@@ -137,16 +159,19 @@ ggplot() +
 .pull-left-30[
 ## Networks in R
 
-- igraph
-- tidygraph
+- [statnet](http://statnet.org/)
+- `igraph`
+- `tidygraph`
+- `qgraph`
+- `ggraph`
+- `visNetwork`
+- `networkD3`
 - ...
-
 ]
 
 .pull-right-70[
 ```{r network_ex, dpi = 350, echo = F, strip.white = T, fig.dim = c(5,5), dev.args = list(bg = 'transparent'), out.width = '90%'}
 library(ggraph)
-library(tidygraph)
 graph = roxel %>% as_sfnetwork(directed = F) %>% convert(to_components)
 ggraph(graph, 'focus', focus = node_is_center()) +
   ggforce::geom_circle(
@@ -175,7 +200,8 @@ class: center, middle
 .center[
 ## why a new package?
 
-![](figs/so_q1.png)
+[![](figs/so_q1.png)](https://stackoverflow.com/questions/57833905/how-to-convert-a-list-of-sf-spatial-points-into-a-routable-graph)
+
 ]
 
 ---
@@ -183,7 +209,7 @@ class: center, middle
 .center[
 ## why a new package?
 
-![:scale 80%](figs/gh_q1.png)
+[![:scale 80%](figs/gh_q1.png)](https://github.com/r-spatial/sf/issues/966)
 ]
 
 ---
@@ -191,7 +217,7 @@ class: center, middle
 .center[
 ## why a new package?
 
-![](figs/gh_c1.png)
+[![](figs/gh_c1.png)](https://github.com/r-spatial/sf/issues/790#issuecomment-403831517)
 ]
 
 ---
@@ -205,6 +231,23 @@ class: center
 ...
 
 because open source can always get better!
+
+---
+class: center, middle
+
+## What is out there already?
+
+[dodgr](https://atfutures.github.io/dodgr/) 
+
+[cppRouting](https://github.com/vlarmet/cppRouting)
+
+[shp2graph](https://r-forge.r-project.org/projects/shp2graph)
+
+[spnetwork](https://github.com/edzer/spnetwork)
+
+[stplanr](https://docs.ropensci.org/stplanr/)
+
+...
 
 ---
 class: center, middle
@@ -311,29 +354,183 @@ class: center, middle
 ---
 ### Installation 
 
+Install the more stable master branch with:
+
 ```{r, eval = F}
 remotes::install_github("luukvdmeer/sfnetworks")
-library(sfnetworks)
+```
+
+Install the develop branch, where most of the development takes place and where PRs should be directed:
+
+```{r, eval = F}
+remotes::install_github("luukvdmeer/sfnetworks", ref = "develop")
 ```
 
 ---
-class: center, middle
+## `sfnetwork` data structure
 
-### `sfnetwork` class and methods
+### Philosophy
+
+--
+
+> "... a close approximation of tidyness for relational data is two tidy data frames, one describing the node data and one describing the edge data."
+
+`tidygraph` introduction.
+
+--
+
+<br>
+<br>
+
+> “A close approximation of tidyness for relational .orange[*geospatial data*] is two .orange[*sf objects*], one describing the node data and one describing the edge data.”
+
+`sfnetworks` adaption.
+
+---
+## `sfnetwork` data structure
+
+### Construction
+
+- Nodes: `sf` object with `POINT` geometries
+
+- Edges: *to* and *from* column with end-points
+
+   + spatially explicit: `sf` object with `LINESTRING` geometries
+
+   + spatially implicit: `data.frame` or `tibble` object
+
+- Same CRS!
+
+---
+`r chunk_reveal(chunk_name = "toyexample", break_type = "user", display_type = "both")`
+
+```{r toyexample, include = F}
+p1 = st_point(c(7, 51))
+p2 = st_point(c(7, 52))
+p3 = st_point(c(8, 52))
+
+st_sfc(
+    p1, p2, p3,
+    crs = 4326
+  ) %>% st_sf() -> #BREAK
+  nodes #BREAK
+
+st_sfc(
+  st_cast(st_union(p1,p2), "LINESTRING"),
+  st_cast(st_union(p1,p3), "LINESTRING"),
+  st_cast(st_union(p2,p3), "LINESTRING"),
+  crs = 4326
+) %>% st_sf() -> #BREAK
+  edges #BREAK
+
+edges$from = c(1, 1, 2)
+edges$to = c(2, 3, 3) #BREAK
+
+sfnetwork(nodes, edges, directed = FALSE) #BREAK
+```
+
+---
+## `sfnetwork` data structure
+
+### Foreign objects
+
+To convert foreign objects into an `sfnetwork` with `as_sfnetwork`, there are two conditions:
+
+- Object is or can be converted to a `tbl_graph`
+
+- At least the nodes can be converted to an `sf` object
+
+--
+
+Or just an `sf` object with `POINT` or `LINESTRING` geometry
 
 ---
 
-`r chunk_reveal(chunk_name = "object", break_type = "user", display_type = "both")`
+`r chunk_reveal(chunk_name = "object1", break_type = "user", display_type = "both")`
 
-```{r object, include = F}
-# `sfnetworks` pre-loaded LINESTRING  
-# `sf` object for Roxel, NRW, Germany
+```{r object1, include = F}
 roxel %>% #BREAK
-  # convert to an `sfnetwork` object
-  as_sfnetwork() %>% #BREAK
+  as_sfnetwork() -> #BREAK
+  net
+```
+
+---
+
+`r chunk_reveal(chunk_name = "object2", break_type = "user", display_type = "both")`
+
+```{r object2, include = F}
+net %>% 
+  st_crs() #BREAK
+
+net %>% 
+  st_transform(3035) #BREAK
+```
+
+---
+
+`r chunk_reveal(chunk_name = "object4", break_type = "user", display_type = "both")`
+
+```{r object4, include = F}
+net %>% 
+  sf_attr("sf_column", "nodes") #BREAK
+  
+net %>% 
+  sf_attr("agr", "edges") # BREAK
+```
+
+---
+
+`r chunk_reveal(chunk_name = "object5", break_type = "user", display_type = "both")`
+
+```{r object5, include = F, dev.args = list(bg = 'transparent'), out.width = '100%'}
+par(mar = c(1, 1, 1, 1), bg = NA)
+plot(net) #BREAK
+
+net %>% 
   class() #BREAK
 ```
 
+---
+
+.pull-left-30[
+## Graph operations
+
+`sfnetwork` objects subclass `tbl_graph` objects, so any `igraph` algorithm and tidy wrappers from `tidygraph` are supported. 
+
+Check out the possibilities on the [tidygraph introduction](https://www.data-imaginist.com/2017/introducing-tidygraph/).
+]
+
+.pull-right-70[
+```{r, echo = F, strip.white = T, fig.dim = c(6,5), dev.args = list(bg = 'transparent'), out.width = '100%'}
+net_c = roxel %>% 
+  as_sfnetwork() %>% 
+  activate('nodes')  %>% 
+  mutate(bc = centrality_betweenness()) 
+
+ggplot() +
+  geom_sf(
+    data = activate(net_c, "edges") %>% st_as_sf(), 
+    col = 'grey50'
+  ) + 
+  geom_sf(
+    data = activate(net_c, "nodes") %>% st_as_sf(), 
+    aes(color = bc, size = bc )
+  ) + 
+  scale_color_continuous("Betweenness centrality", breaks = c(0,10000, 20000, 30000, 40000,50000), type = "viridis") +
+  scale_size_continuous("Betweenness centrality", breaks = c(0,10000, 20000, 30000, 40000,50000)) +
+  guides(color= guide_legend(), size=guide_legend()) +
+  theme_xaringan(text_font_size = 18, title_font_size = 22) +
+  theme(
+    # text = element_text(size = 18),
+    axis.ticks = element_line(color = 'grey70'),
+    panel.grid = element_line(color = 'grey70', linetype = 'dotted', size = 0.5),
+    legend.background = element_rect(fill = "transparent"),
+    panel.background = element_rect(fill = "transparent"),
+    plot.background = element_rect(fill = "transparent", color = NA)
+  )
+```
+
+]
 ---
 
 `r chunk_reveal(chunk_name = "sfnetworks_options", break_type = "non_seq", display_type = "both")`
@@ -346,54 +543,192 @@ roxel %>%
   ) #BREAK
 ```
 
-The construction function has two main options...
+.note[See issue [#50](https://github.com/luukvdmeer/sfnetworks/issues/50)]
+---
+`r chunk_reveal(chunk_name = "activate", break_type = "user", display_type = "both")`
+
+```{r activate, include = F}
+net %>% #BREAK
+  activate("edges") %>% #BREAK
+  st_geometry() #BREAK
+
+net %>% 
+  activate("nodes") %>% 
+  st_geometry() #BREAK
+```
+
+---
+`r chunk_reveal(chunk_name = "filter", break_type = "user", display_type = "both")`
+
+```{r filter, include = F, fig.width = 15, dev.args = list(bg = 'transparent')}
+net = roxel %>% as_sfnetwork(directed = F) #BREAK
+
+plot(net) #BREAK
+
+rect = st_multipoint(c(
+    st_point(c(7.53173, 51.95662)),
+    st_point(c(7.53173, 51.95190)),
+    st_point(c(7.53778, 51.95190)),
+    st_point(c(7.53778, 51.95662))
+  )) %>% 
+  st_cast('POLYGON') %>% 
+  st_sfc(crs = 4326)
+
+rect %>%
+  plot( 
+  border = "Red", 
+  lwd = 2, 
+  add = TRUE
+) #BREAK
+
+net %>%
+  st_filter(rect, .pred = st_intersects) %>% 
+  plot(col = "Orange", add = TRUE) #BREAK
+```
+
+.note[Other supported `sf` functions: spatial joins, coordinate transformations]
+---
+
+### Not supported functions
+
+> There is a clear limitation in the relational data structure that requires rows to maintain their identity. 
+
+> For sfnetwork objects, this also means that the geometries of features should be maintained, or at least the endpoints of these geometries, in the case of the edges. 
+
+> That is, functions that summarise geometries, or (may) change their .orange[type, shape or position], are not supported.
+
+---
+`r chunk_reveal(chunk_name = "extraction", break_type = "user", display_type = "both")`
+
+```{r extraction, include = F}
+net %>%
+  st_transform(3035) %>% 
+  activate("nodes") %>% #BREAK
+  st_as_sf() %>% #BREAK
+  mutate(
+    aoi = st_area(
+      st_collection_extract(
+        st_voronoi(do.call(c, st_geometry(.)))
+  ))) -> #BREAK
+  y
+
+net %>%
+  st_transform(3035) %>% 
+  activate("nodes") %>% #BREAK
+  st_join(y) #BREAK
+```
+
+
+---
+class: center, middle
+
+## Extending the vocabulary
+
+---
+`r chunk_reveal(chunk_name = "edgemeasures", break_type = "rotate", display_type = "both")`
+
+```{r edgemeasures, include = F}
+net %>% 
+  activate("edges") %>%
+  mutate(length = edge_length()) %>%  #ROTATE
+  mutate(straight = edge_straight_length()) %>% #ROTATE
+  mutate(circuity = edge_circuity()) #ROTATE
+```
 
 ---
 
-`r chunk_reveal(chunk_name = "plot", break_type = "non_seq", display_type = "both")`
+`r chunk_reveal(chunk_name = "shortestpath", break_type = "user", display_type = "both")`
 
-```{r plot, include = F, dev.args = list(bg = 'transparent')}
-par(mar = c(1, 1, 1, 1), bg = NA)
-roxel %>% 
-  as_sfnetwork(
-    directed = F,
-    edges_as_lines = F #BREAK2
-  ) %>% #BREAK
+```{r shortestpath, include = F}
+p1 = net %>%
+  activate(nodes) %>%
+  st_as_sf() %>% 
+  slice(1)
+
+p2 = net %>%
+  activate(nodes) %>%
+  st_as_sf() %>% 
+  slice(9) #BREAK
+
+p3 = sf::st_sfc(
+  sf::st_geometry(p1)[[1]] + sf::st_point(c(0.01, 0.01)), 
+  crs = sf::st_crs(p1)
+) %>% st_sf()
+
+p4 = sf::st_sfc(
+  sf::st_geometry(p2)[[1]] + sf::st_point(c(0.01, 0.01)), 
+  crs = sf::st_crs(p2)
+) %>% st_sf() #BREAK
+
+net %>% 
+  # activate("edges") %>% 
+  # mutate(weights = edge_length()) %>%
+  st_shortest_paths(p2, p1) %>% 
+  .$vpath #BREAK
+```
+
+.note[See issue [#54](https://github.com/luukvdmeer/sfnetworks/issues/54)]
+
+---
+
+`r chunk_reveal(chunk_name = "morphers", break_type = "user", display_type = "both")`
+
+```{r morphers, include = F}
+net %>% 
+  morph(to_components) -> 
+  net_m #BREAK
+
+net_m %>% class() #BREAK
+
+net_m %>% length() #BREAK
+
+net %>%
+  convert(to_components, .select = 1) #BREAK
+```
+
+---
+
+`r chunk_reveal(chunk_name = "spatialmorphers1", break_type = "user", display_type = "both")`
+
+```{r spatialmorphers1, include = F}
+net %>% #BREAK
+  convert(to_spatial_coordinates) #BREAK
+```
+
+---
+`r chunk_reveal(chunk_name = "spatialmorphers2", break_type = "user", display_type = "both")`
+
+```{r spatialmorphers2, include = F, dev.args = list(bg = 'transparent')}
+net %>% 
+  convert(to_spatial_dense_graph) %>% #BREAK
   plot() #BREAK
 ```
 
-which are better observed when plotted!
+---
+`r chunk_reveal(chunk_name = "spatialmorphers3", break_type = "user", display_type = "both")`
+
+```{r spatialmorphers3, include = F, dev.args = list(bg = 'transparent')}
+net %>% 
+  convert(to_spatial_shortest_paths, 1, 9) -> #BREAK
+  net_sp 
+
+plot(net) #BREAK
+plot(net_sp, 
+     col = "Orange", lwd = 1.5, cex = 1.5, 
+     add = T) #BREAK
+```
 
 ---
 
-## What is out there already?
+`r chunk_reveal(chunk_name = "spatialmorphers4", break_type = "user", display_type = "both")`
 
---
-
-- [dodgr](https://atfutures.github.io/dodgr/)
-
---
-
-- [cppRouting](https://github.com/vlarmet/cppRouting)
-
---
-
-- [shp2graph](https://r-forge.r-project.org/projects/shp2graph)
-
---
-
-- [spnetwork](https://github.com/edzer/spnetwork)
-
---
-
-- [stplanr](https://docs.ropensci.org/stplanr/)
-
---
-
-- ...
+```{r spatialmorphers4, include = F}
+net %>% 
+  morph(to_spatial_shortest_paths, 1, c(9, 10)) %>% #BREAK
+  sapply(function(x) sum(st_length(x))) #BREAK
+```
 
 ---
-
 background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&name=4096x4096)
 
 # Applications 
@@ -423,51 +758,127 @@ Transport planning/modelling (Robin), Road safety (Andrea), River network analys
 
 ---
 
-### Transport networks are spatial networks
+### How to cope with reduced public transport capacity post COVID-19?
 
-Spatial network representation in R:
-
-![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
-
----
-
-### Actual plans from Leeds City Council
+Plans from Leeds City Council responding to national [guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities) and [funding](https://www.gov.uk/government/news/2-billion-package-to-create-new-era-for-cycling-and-walking) for 'pop-up' cycleways:
 
 
 ![](https://pbs.twimg.com/media/EZ_-A0dXgAAlBzt?format=png&name=900x900)
 
 ---
 
-### Example: where to put 'pop-up' cycleways? Source: [www.cyipt.bike](https://www.cyipt.bike/rapid)
+## Spatial networks can support planning
+
+### Transport networks are spatial networks
+
+Spatial network representation in R:
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+
+
+
+---
+
+background-image: url("https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png")
+background-position: right
+background-size: contain
+
+--
+
+### sf + igraph used in project to support investment in 'pop-ups' nationwide
+
+Every city in England
+
+--
+
+Results in Leeds:
+
+```{r, echo=FALSE, results='markup'}
+res_leeds = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/top_routes.geojson")
+res_leeds %>% 
+  arrange(desc(mean_cycling_potential)) %>% 
+  slice(1:5) %>%
+  sf::st_drop_geometry() %>% 
+  dplyr::select(name) %>% 
+  as.data.frame()
+```
+
+Cycleway planned for
+
+Kirkstall Road (source: [BBC](https://www.bbc.co.uk/news/uk-england-leeds-52577554))
+
+Free and open results:
+
+[www.cyipt.bike/rapid](https://www.cyipt.bike/rapid)
+
+Source code: [github.com/cyipt/popupCycleways](https://github.com/cyipt/popupCycleways)
 
 <!-- ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png) -->
 
 ```{r, out.width="70%", echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png")
+# knitr::include_graphics("https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png")
 ```
+
 
 ---
 
-## Necessary ingredients to prioritise new infrastructure
+## Ingredients to prioritise transport infrastructure
 
-.pull-left[
+.left-column[
 
 - Current travel patterns
 - Road attribute data 
 - Potential usage levels
 - Impact on overall network
 
+**Spatial networks can help, especially with the last two**
+
+Source: https://www.pct.bike/
+
+
+]
+
+.right-column[
+
+![](figs/pct.png)
+
+
+]
+
+---
+
+## Why not use `stplanr::SpatialLinesNetwork`?
+
+.pull-left[
+
+
+- You can:
+
+```{r}
+r_stplanr = stplanr::SpatialLinesNetwork(roxel)
+```
+
+```{r}
+l = stplanr::route_local(r_stplanr, c(7.53, 51.95), c(7.54, 51.95))
+plot(r_stplanr@sl$geometry)
+plot(l$geometry, col = "red", lwd = 5, add = TRUE)
+```
 ]
 
 .pull-right[
 
-![](https://raw.githubusercontent.com/npct/pct-team/master/figures/go-dutch-leeds-purpose.png)
+Issues with stplanr implementation:
+
+- `igraph` and `sf` parts are separate
+- Hard to access the nodes
+- Subsetting requires rebuilding the graph
+
+```{r}
+class(r_stplanr)
+slotNames(r_stplanr) # s4 class system
+```
 
 ]
-
---
-
-Source: https://www.pct.bike/
 
 ---
 
@@ -512,7 +923,7 @@ class: center, middle
 
 ---
 
-`r chunk_reveal(chunk_name = "nodes_degree", break_type = "user", display_type = "both", width_code = "48%", width_output = "50%")`
+`r chunk_reveal(chunk_name = "nodes_degree", break_type = "user", display_type = "both", width_left = "48%", width_right = "50%")`
 
 ```{r nodes_degree, include=FALSE}
 # Estimate nodes centrality degree
@@ -537,7 +948,7 @@ tm_layout(legend.text.size = 2)
 
 ---
 
-`r chunk_reveal(chunk_name = "edge_betweenness", break_type = "user", display_type = "both", width_code = "48%", width_output = "50%")`
+`r chunk_reveal(chunk_name = "edge_betweenness", break_type = "user", display_type = "both", width_left = "48%", width_right = "50%")`
 
 ```{r edge_betweenness, include=FALSE}
 # Estimate edges centrality betweenness
@@ -566,7 +977,6 @@ tm_shape(net %>% activate("nodes") %>% st_as_sf()) +
 
 ### Extracting the Adjacency Matrix of the edges
 
-
 We can use `igraph` and `make_line_graph`! The `line graph` of a network object is obtained by inverting the nodes with the edges. We can apply this powerful idea to extract and visualize the `first-order binary adjacency matrix of the edges`. This type of matrix is used by a CAR or BYM spatial model. 
 
 ```{r, include=FALSE}
@@ -576,9 +986,9 @@ library(Matrix)
 
 ---
 
-`r chunk_reveal(chunk_name = "line_graph", break_type = "user", display_type = "both", width_code = "60%", width_output = "35%", title = "###First order binar adjacency", split = 50)`
+`r chunk_reveal(chunk_name = "line_graph", break_type = "user", display_type = "both", width_left = "60%", width_right = "35%", title = "###First order binary adjacency", split = 50)`
 
-```{r line_graph, include = FALSE}
+```{r line_graph, include = FALSE, dev.args = list(bg = 'transparent')}
 # Create the line graph
 net_line_graph <- make_line_graph(net) #BREAK
 
@@ -597,9 +1007,9 @@ image(
 
 ---
 
-`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_code = "55%", width_output = "42%", title = "###Second order binar adjacency", split = 50)`
+`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_left = "55%", width_right = "42%", title = "###Second order binary adjacency", split = 50)`
 
-```{r line_graph2, include=FALSE}
+```{r line_graph2, include=FALSE, dev.args = list(bg = 'transparent')}
 # Similar idea for second order binary adjacency
 ego2_net <- ego(net_line_graph, 2) #BREAK
 
@@ -616,3 +1026,12 @@ image(
   )
 ```
 
+
+---
+class: center, middle
+
+### Thank you for you interest!
+
+#### Questions?
+
+.note[Slides powered by [xaringan](https://github.com/yihui/xaringan), [xaringanthemer](https://github.com/gadenbuie/xaringanthemer) and [flipbookr](https://github.com/EvaMaeRey/flipbookr)]
