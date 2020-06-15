@@ -278,3 +278,9 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .orange {
   color: #ffa500;
 }
+.note {
+  font-size: 0.8em;
+  position: absolute;
+  bottom: 30px;
+  padding-right: 4em;
+}

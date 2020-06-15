@@ -120,7 +120,8 @@ class: center, middle
 .center[
 ## why a new package?
 
-![](figs/so_q1.png)
+[![](figs/so_q1.png)](https://stackoverflow.com/questions/57833905/how-to-convert-a-list-of-sf-spatial-points-into-a-routable-graph)
+
 ]
 
 ---
@@ -128,7 +129,7 @@ class: center, middle
 .center[
 ## why a new package?
 
-![:scale 80%](figs/gh_q1.png)
+[![:scale 80%](figs/gh_q1.png)](https://github.com/r-spatial/sf/issues/966)
 ]
 
 ---
@@ -136,7 +137,7 @@ class: center, middle
 .center[
 ## why a new package?
 
-![](figs/gh_c1.png)
+[![](figs/gh_c1.png)](https://github.com/r-spatial/sf/issues/790#issuecomment-403831517)
 ]
 
 ---
@@ -150,6 +151,23 @@ class: center
 ...
 
 because open source can always get better!
+
+---
+class: center, middle
+
+## What is out there already?
+
+- [dodgr](https://atfutures.github.io/dodgr/) 
+
+- [cppRouting](https://github.com/vlarmet/cppRouting)
+
+- [shp2graph](https://r-forge.r-project.org/projects/shp2graph)
+
+- [spnetwork](https://github.com/edzer/spnetwork)
+
+- [stplanr](https://docs.ropensci.org/stplanr/)
+
+- ...
 
 ---
 class: center, middle
@@ -310,7 +328,7 @@ class: split-40
 count: false
  
 
-.left-code-toyexample-user[
+.left-panel-toyexample-user[
 
 ```r
 *p1 = st_point(c(7, 51))
@@ -324,7 +342,7 @@ count: false
 ```
 ]
  
-.right-output-toyexample-user[
+.right-panel-toyexample-user[
 
 ```
 Simple feature collection with 3 features and 0 fields
@@ -344,7 +362,7 @@ class: split-40
 count: false
  
 
-.left-code-toyexample-user[
+.left-panel-toyexample-user[
 
 ```r
 p1 = st_point(c(7, 51))  
@@ -359,7 +377,7 @@ st_sfc(
 ```
 ]
  
-.right-output-toyexample-user[
+.right-panel-toyexample-user[
 
 ]
 
@@ -368,7 +386,7 @@ class: split-40
 count: false
  
 
-.left-code-toyexample-user[
+.left-panel-toyexample-user[
 
 ```r
 p1 = st_point(c(7, 51))  
@@ -390,7 +408,7 @@ st_sfc(
 ```
 ]
  
-.right-output-toyexample-user[
+.right-panel-toyexample-user[
 
 ```
 Simple feature collection with 3 features and 0 fields
@@ -410,7 +428,7 @@ class: split-40
 count: false
  
 
-.left-code-toyexample-user[
+.left-panel-toyexample-user[
 
 ```r
 p1 = st_point(c(7, 51))  
@@ -433,7 +451,7 @@ st_sfc(
 ```
 ]
  
-.right-output-toyexample-user[
+.right-panel-toyexample-user[
 
 ]
 
@@ -442,7 +460,7 @@ class: split-40
 count: false
  
 
-.left-code-toyexample-user[
+.left-panel-toyexample-user[
 
 ```r
 p1 = st_point(c(7, 51))  
@@ -468,7 +486,7 @@ st_sfc(
 ```
 ]
  
-.right-output-toyexample-user[
+.right-panel-toyexample-user[
 
 ]
 
@@ -477,7 +495,7 @@ class: split-40
 count: false
  
 
-.left-code-toyexample-user[
+.left-panel-toyexample-user[
 
 ```r
 p1 = st_point(c(7, 51))  
@@ -505,49 +523,59 @@ edges$to = c(2, 3, 3)
 ```
 ]
  
-.right-output-toyexample-user[
+.right-panel-toyexample-user[
 
 ```
-# An sfnetwork with 3 nodes and 3 edges
+Checking validity of network structure... Use force=TRUE to force construction without checks
+```
+
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
-# CRS:  EPSG:4326 
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
 #
 # An undirected simple graph with 1 component with spatially explicit edges
 #
-# Node Data:     3 x 1 (active)
-# Geometry type: POINT
-# Dimension:     XY
-# Bounding box:  xmin: 7 ymin: 51 xmax: 8 ymax: 52
+# Node Data:     3 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7 ymin: 51 xmax: 8 ymax: 52&lt;/span&gt;&lt;span&gt;
      geometry
-  &lt;POINT [°]&gt;
-1      (7 51)
-2      (7 52)
-3      (8 52)
-#
-# Edge Data:     3 x 3
-# Geometry type: LINESTRING
-# Dimension:     XY
-# Bounding box:  xmin: 7 ymin: 51 xmax: 8 ymax: 52
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;      (7 51)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;      (7 52)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;      (8 52)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     3 x 3&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7 ymin: 51 xmax: 8 ymax: 52&lt;/span&gt;&lt;span&gt;
    from    to         geometry
-  &lt;int&gt; &lt;int&gt; &lt;LINESTRING [°]&gt;
-1     1     2     (7 51, 7 52)
-2     1     3     (7 51, 8 52)
-3     2     3     (7 52, 8 52)
-```
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2     (7 51, 7 52)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     1     3     (7 51, 8 52)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     2     3     (7 52, 8 52)
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
 ]
 
 &lt;style&gt;
-.left-code-toyexample-user {
+.left-panel-toyexample-user {
   color: #777;
   width: 38%;
   height: 92%;
   float: left;
   font-size: 80%
 }
-.right-output-toyexample-user {
+.right-panel-toyexample-user {
   width: 60%;
   float: right;
   padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-toyexample-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
 }
 &lt;/style&gt;
 
@@ -562,17 +590,13 @@ edges$to = c(2, 3, 3)
 
 To convert foreign objects into an `sfnetwork` with `as_sfnetwork`, there are two conditions:
 
-- Object is or can be converted to a `tbl_graph`.
+- Object is or can be converted to a `tbl_graph`
 
-- At least the nodes can be converted to an `sf` object.
-
---
-
-Or just an `sf` object with `POINT` or `LINESTRING` geometry... but some assumptions are made! 
+- At least the nodes can be converted to an `sf` object
 
 --
 
-More methods were recently added for `sfNetwork`, `linnet` and `psp` objects!
+Or just an `sf` object with `POINT` or `LINESTRING` geometry
 
 ---
 
@@ -580,16 +604,14 @@ class: split-40
 count: false
  
 
-.left-code-object-user[
+.left-panel-object-user[
 
 ```r
-# `sfnetworks` pre-loaded LINESTRING
-# `sf` object for Roxel, NRW, Germany
 *roxel
 ```
 ]
  
-.right-output-object-user[
+.right-panel-object-user[
 &lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;Simple feature collection with 851 features and 2 fields
 geometry type:  LINESTRING
 dimension:      XY
@@ -617,18 +639,15 @@ class: split-40
 count: false
  
 
-.left-code-object-user[
+.left-panel-object-user[
 
 ```r
-# `sfnetworks` pre-loaded LINESTRING
-# `sf` object for Roxel, NRW, Germany
 roxel %&gt;%  
-# convert to an `sfnetwork` object
 * as_sfnetwork()
 ```
 ]
  
-.right-output-object-user[
+.right-panel-object-user[
 &lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
@@ -669,19 +688,417 @@ class: split-40
 count: false
  
 
-.left-code-object-user[
+.left-panel-object-user[
 
 ```r
-# `sfnetworks` pre-loaded LINESTRING
-# `sf` object for Roxel, NRW, Germany
 roxel %&gt;%  
-# convert to an `sfnetwork` object
-  as_sfnetwork() %&gt;%  
+  as_sfnetwork() -&gt;  
+* net
+
+*net %&gt;%
+* st_crs()
+```
+]
+ 
+.right-panel-object-user[
+
+```
+Coordinate Reference System:
+  User input: EPSG:4326 
+  wkt:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["unknown"],
+        AREA["World"],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-object-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() -&gt;  
+  net  
+
+net %&gt;%  
+  st_crs()  
+
+*net %&gt;%
+* st_transform(3035)
+```
+]
+ 
+.right-panel-object-user[
+
+```
+Coordinate Reference System:
+  User input: EPSG:4326 
+  wkt:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["unknown"],
+        AREA["World"],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]
+```
+
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-object-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() -&gt;  
+  net  
+
+net %&gt;%  
+  st_crs()  
+
+net %&gt;%  
+  st_transform(3035)  
+
+*net %&gt;%
+* sf_attr("sf_column", "nodes")
+```
+]
+ 
+.right-panel-object-user[
+
+```
+Coordinate Reference System:
+  User input: EPSG:4326 
+  wkt:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["unknown"],
+        AREA["World"],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]
+```
+
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+
+```
+[1] "geometry"
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-object-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() -&gt;  
+  net  
+
+net %&gt;%  
+  st_crs()  
+
+net %&gt;%  
+  st_transform(3035)  
+
+net %&gt;%  
+  sf_attr("sf_column", "nodes")  
+
+*net %&gt;%
+* sf_attr("agr", "edges")  # BREAK
+
+*plot(net)
+```
+]
+ 
+.right-panel-object-user[
+
+```
+Coordinate Reference System:
+  User input: EPSG:4326 
+  wkt:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["unknown"],
+        AREA["World"],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]
+```
+
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+
+```
+[1] "geometry"
+```
+
+```
+from   to name type 
+&lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; 
+Levels: constant aggregate identity
+```
+
+&lt;img src="slides_files/figure-html/object_user_6_output-1.png" width="432" /&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-object-user[
+
+```r
+roxel %&gt;%  
+  as_sfnetwork() -&gt;  
+  net  
+
+net %&gt;%  
+  st_crs()  
+
+net %&gt;%  
+  st_transform(3035)  
+
+net %&gt;%  
+  sf_attr("sf_column", "nodes")  
+
+net %&gt;%  
+  sf_attr("agr", "edges")  # BREAK
+
+plot(net)  
+
+*net %&gt;%
 * class()
 ```
 ]
  
-.right-output-object-user[
+.right-panel-object-user[
+
+```
+Coordinate Reference System:
+  User input: EPSG:4326 
+  wkt:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["unknown"],
+        AREA["World"],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]
+```
+
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+
+```
+[1] "geometry"
+```
+
+```
+from   to name type 
+&lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; 
+Levels: constant aggregate identity
+```
+
+&lt;img src="slides_files/figure-html/object_user_7_output-1.png" width="432" /&gt;
 
 ```
 [1] "sfnetwork" "tbl_graph" "igraph"   
@@ -689,17 +1106,24 @@ roxel %&gt;%
 ]
 
 &lt;style&gt;
-.left-code-object-user {
+.left-panel-object-user {
   color: #777;
   width: 38%;
   height: 92%;
   float: left;
   font-size: 80%
 }
-.right-output-object-user {
+.right-panel-object-user {
   width: 60%;
   float: right;
   padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-object-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
 }
 &lt;/style&gt;
 
@@ -708,20 +1132,26 @@ roxel %&gt;%
 
 
 ---
-## `sfnetwork` data structure
 
-### Arguments for construction
+.pull-left-30[
+## Graph operations
 
-- directed graph?
+`sfnetwork` objects subclass `tbl_graph` objects, so any `igraph` algorithm and tydy wrappers from `tidygraph` are supported. 
 
-- spatially explicit edges?
+Check out the possibilities on the [tidygraph introduction](https://www.data-imaginist.com/2017/introducing-tidygraph/).
+]
+
+.pull-right-70[
+&lt;img src="slides_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+
+]
 ---
 
 class: split-40
 count: false
  
 
-.left-code-sfnetworks_options-non_seq[
+.left-panel-sfnetworks_options-non_seq[
 
 ```r
 roxel %&gt;%  
@@ -730,7 +1160,7 @@ roxel %&gt;%
 ```
 ]
  
-.right-output-sfnetworks_options-non_seq[
+.right-panel-sfnetworks_options-non_seq[
 &lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
@@ -771,7 +1201,7 @@ class: split-40
 count: false
  
 
-.left-code-sfnetworks_options-non_seq[
+.left-panel-sfnetworks_options-non_seq[
 
 ```r
 roxel %&gt;%  
@@ -781,7 +1211,7 @@ roxel %&gt;%
 ```
 ]
  
-.right-output-sfnetworks_options-non_seq[
+.right-panel-sfnetworks_options-non_seq[
 &lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
@@ -822,7 +1252,7 @@ class: split-40
 count: false
  
 
-.left-code-sfnetworks_options-non_seq[
+.left-panel-sfnetworks_options-non_seq[
 
 ```r
 roxel %&gt;%  
@@ -833,7 +1263,7 @@ roxel %&gt;%
 ```
 ]
  
-.right-output-sfnetworks_options-non_seq[
+.right-panel-sfnetworks_options-non_seq[
 &lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
 #
 # CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
@@ -866,17 +1296,24 @@ roxel %&gt;%
 ]
 
 &lt;style&gt;
-.left-code-sfnetworks_options-non_seq {
+.left-panel-sfnetworks_options-non_seq {
   color: #777;
   width: 38%;
   height: 92%;
   float: left;
   font-size: 80%
 }
-.right-output-sfnetworks_options-non_seq {
+.right-panel-sfnetworks_options-non_seq {
   width: 60%;
   float: right;
   padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-sfnetworks_options-non_seq {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
 }
 &lt;/style&gt;
 
@@ -884,69 +1321,248 @@ roxel %&gt;%
 
 
 
----
-## `sfnetwork` data structure
-
-### Arguments for construction
-
-better observed when plotted...
-
----
-
-class: split-40
-count: false
- 
-
-.left-code-plot-non_seq[
-
-```r
-par(mar = c(1, 1, 1, 1), bg = NA)  
-roxel %&gt;%  
-  as_sfnetwork(  
-    directed = F,  
-  ) %&gt;%  
-  plot()  
-```
-]
- 
-.right-output-plot-non_seq[
-&lt;img src="slides_files/figure-html/plot_non_seq_1_output-1.png" width="432" /&gt;
-]
-
+.note[See issue [#50](https://github.com/luukvdmeer/sfnetworks/issues/50)]
 ---
 class: split-40
 count: false
  
 
-.left-code-plot-non_seq[
+.left-panel-activate-user[
 
 ```r
-par(mar = c(1, 1, 1, 1), bg = NA)  
-roxel %&gt;%  
-  as_sfnetwork(  
-    directed = F,  
-*   edges_as_lines = F
-  ) %&gt;%  
-  plot()  
+*net
 ```
 ]
  
-.right-output-plot-non_seq[
-&lt;img src="slides_files/figure-html/plot_non_seq_2_output-1.png" width="432" /&gt;
+.right-panel-activate-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name        type                                geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-activate-user[
+
+```r
+net %&gt;%  
+* activate("edges")
+```
+]
+ 
+.right-panel-activate-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed multigraph with 14 components with spatially explicit edges
+#
+# Edge Data:     851 x 5 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name       type                                 geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.9557~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.95377~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.9523~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;     7     8 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;         path    (7.540063 51.94468, 7.539696 51.9447~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt;     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.94562)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt;    11    12 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;         footway (7.543791 51.94733, 7.54369 51.94686~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 845 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Node Data:     701 x 1&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 698 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-activate-user[
+
+```r
+net %&gt;%  
+  activate("edges") %&gt;%  
+* st_geometry()
+```
+]
+ 
+.right-panel-activate-user[
+
+```
+Geometry set for 851 features 
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
+geographic CRS: WGS 84
+First 5 geometries:
+```
+
+```
+LINESTRING (7.533722 51.95556, 7.533461 51.95576)
+```
+
+```
+LINESTRING (7.532442 51.95422, 7.53236 51.95377...
+```
+
+```
+LINESTRING (7.532709 51.95209, 7.532823 51.9523...
+```
+
+```
+LINESTRING (7.540063 51.94468, 7.539696 51.9447...
+```
+
+```
+LINESTRING (7.537673 51.9475, 7.537614 51.94562)
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-activate-user[
+
+```r
+net %&gt;%  
+  activate("edges") %&gt;%  
+  st_geometry()  
+
+*net %&gt;%
+* activate("nodes") %&gt;%
+* st_geometry()
+```
+]
+ 
+.right-panel-activate-user[
+
+```
+Geometry set for 851 features 
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
+geographic CRS: WGS 84
+First 5 geometries:
+```
+
+```
+LINESTRING (7.533722 51.95556, 7.533461 51.95576)
+```
+
+```
+LINESTRING (7.532442 51.95422, 7.53236 51.95377...
+```
+
+```
+LINESTRING (7.532709 51.95209, 7.532823 51.9523...
+```
+
+```
+LINESTRING (7.540063 51.94468, 7.539696 51.9447...
+```
+
+```
+LINESTRING (7.537673 51.9475, 7.537614 51.94562)
+```
+
+```
+Geometry set for 701 features 
+geometry type:  POINT
+dimension:      XY
+bbox:           xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
+geographic CRS: WGS 84
+First 5 geometries:
+```
+
+```
+POINT (7.533722 51.95556)
+```
+
+```
+POINT (7.533461 51.95576)
+```
+
+```
+POINT (7.532442 51.95422)
+```
+
+```
+POINT (7.53209 51.95328)
+```
+
+```
+POINT (7.532709 51.95209)
+```
 ]
 
 &lt;style&gt;
-.left-code-plot-non_seq {
+.left-panel-activate-user {
   color: #777;
   width: 38%;
   height: 92%;
   float: left;
   font-size: 80%
 }
-.right-output-plot-non_seq {
+.right-panel-activate-user {
   width: 60%;
   float: right;
   padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-activate-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
 }
 &lt;/style&gt;
 
@@ -955,61 +1571,19 @@ roxel %&gt;%
 
 
 ---
-## `sfnetwork` data structure
-
-### Activation and extraction
-
-Same principle as `tidygraph` with the `activate` verb
-
----
 class: split-40
 count: false
  
 
-.left-code-activate-user[
+.left-panel-filter-user[
 
 ```r
-*roxel %&gt;%
-* as_sfnetwork()
+*net = roxel %&gt;% as_sfnetwork(directed = F)
 ```
 ]
  
-.right-output-activate-user[
+.right-panel-filter-user[
 
-```
-# An sfnetwork with 701 nodes and 851 edges
-#
-# CRS:  EPSG:4326 
-#
-# A directed multigraph with 14 components with spatially explicit edges
-#
-# Node Data:     701 x 1 (active)
-# Geometry type: POINT
-# Dimension:     XY
-# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
-#   51.9612
-             geometry
-          &lt;POINT [°]&gt;
-1 (7.533722 51.95556)
-2 (7.533461 51.95576)
-3 (7.532442 51.95422)
-4  (7.53209 51.95328)
-5 (7.532709 51.95209)
-6 (7.532869 51.95257)
-# ... with 695 more rows
-#
-# Edge Data:     851 x 5
-# Geometry type: LINESTRING
-# Dimension:     XY
-# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
-#   51.9612
-   from    to name        type                                geometry
-  &lt;int&gt; &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
-1     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
-2     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
-3     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
-# ... with 848 more rows
-```
 ]
 
 ---
@@ -1017,51 +1591,18 @@ class: split-40
 count: false
  
 
-.left-code-activate-user[
+.left-panel-filter-user[
 
 ```r
-roxel %&gt;%  
-  as_sfnetwork() %&gt;%  
-* activate('edges')
+net = roxel %&gt;% as_sfnetwork(directed = F)  
+
+*par(mar = c(1, 1, 1, 1), bg = NA)
+*plot(net)
 ```
 ]
  
-.right-output-activate-user[
-
-```
-# An sfnetwork with 701 nodes and 851 edges
-#
-# CRS:  EPSG:4326 
-#
-# A directed multigraph with 14 components with spatially explicit edges
-#
-# Edge Data:     851 x 5 (active)
-# Geometry type: LINESTRING
-# Dimension:     XY
-# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
-#   51.9612
-   from    to name       type                                 geometry
-  &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;                        &lt;LINESTRING [°]&gt;
-1     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.9557~
-2     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.95377~
-3     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.9523~
-4     7     8 &lt;NA&gt;       path    (7.540063 51.94468, 7.539696 51.9447~
-5     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.94562)
-6    11    12 &lt;NA&gt;       footway (7.543791 51.94733, 7.54369 51.94686~
-# ... with 845 more rows
-#
-# Node Data:     701 x 1
-# Geometry type: POINT
-# Dimension:     XY
-# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
-#   51.9612
-             geometry
-          &lt;POINT [°]&gt;
-1 (7.533722 51.95556)
-2 (7.533461 51.95576)
-3 (7.532442 51.95422)
-# ... with 698 more rows
-```
+.right-panel-filter-user[
+&lt;img src="slides_files/figure-html/filter_user_2_output-1.png" width="432" /&gt;
 ]
 
 ---
@@ -1069,38 +1610,757 @@ class: split-40
 count: false
  
 
-.left-code-activate-user[
+.left-panel-filter-user[
 
 ```r
-roxel %&gt;%  
-  as_sfnetwork() %&gt;%  
-  activate('edges')  %&gt;%  
+net = roxel %&gt;% as_sfnetwork(directed = F)  
+
+par(mar = c(1, 1, 1, 1), bg = NA)  
+plot(net)  
+
+*rect = st_multipoint(c(
+*   st_point(c(7.53173, 51.95662)),
+*   st_point(c(7.53173, 51.95190)),
+*   st_point(c(7.53778, 51.95190)),
+*   st_point(c(7.53778, 51.95662))
+* )) %&gt;%
+* st_cast('POLYGON') %&gt;%
+* st_sfc(crs = 4326)
+
+*rect %&gt;%
+* plot(
+* border = "Red",
+* lwd = 2,
+* add = TRUE
+*) 
+```
+]
+ 
+.right-panel-filter-user[
+&lt;img src="slides_files/figure-html/filter_user_3_output-1.png" width="432" /&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-filter-user[
+
+```r
+net = roxel %&gt;% as_sfnetwork(directed = F)  
+
+par(mar = c(1, 1, 1, 1), bg = NA)  
+plot(net)  
+
+rect = st_multipoint(c(  
+    st_point(c(7.53173, 51.95662)),  
+    st_point(c(7.53173, 51.95190)),  
+    st_point(c(7.53778, 51.95190)),  
+    st_point(c(7.53778, 51.95662))  
+  )) %&gt;%  
+  st_cast('POLYGON') %&gt;%  
+  st_sfc(crs = 4326)  
+
+rect %&gt;%  
+  plot(  
+  border = "Red",  
+  lwd = 2,  
+  add = TRUE  
+)  
+
+*net %&gt;%
+* st_filter(rect, .pred = st_intersects) %&gt;%
+* plot(col = "Orange", add = TRUE)
+```
+]
+ 
+.right-panel-filter-user[
+
+```
+although coordinates are longitude/latitude, st_intersects assumes that they are planar
+although coordinates are longitude/latitude, st_intersects assumes that they are planar
+```
+
+&lt;img src="slides_files/figure-html/filter_user_4_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-panel-filter-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-filter-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-filter-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+.note[Other supported `sf` functions: spatial joins, coordinate transformations]
+---
+
+### Not supported functions
+
+&gt; There is a clear limitation in the relational data structure that requires rows to maintain their identity. 
+
+&gt; For sfnetwork objects, this also means that the geometries of features should be maintained, or at least the endpoints of these geometries, in the case of the edges. 
+
+&gt; That is, functions that summarise geometries, or (may) change their .orange[type, shape or position], are not supported.
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-extraction-user[
+
+```r
+*net %&gt;%
+* st_transform(3035) %&gt;%
+* activate("nodes")
+```
+]
+ 
+.right-panel-extraction-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-extraction-user[
+
+```r
+net %&gt;%  
+  st_transform(3035) %&gt;%  
+  activate("nodes") %&gt;%  
 * st_as_sf()
 ```
 ]
  
-.right-output-activate-user[
+.right-panel-extraction-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;Simple feature collection with 701 features and 0 fields
+geometry type:  POINT
+dimension:      XY
+bbox:           xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565
+projected CRS:  ETRS89-extended / LAEA Europe
+&lt;span style='color: #555555;'&gt;# A tibble: 701 x 1&lt;/span&gt;&lt;span&gt;
+            geometry
+         &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 7&lt;/span&gt;&lt;span&gt; (4151885 3206698)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 8&lt;/span&gt;&lt;span&gt; (4151762 3206789)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 9&lt;/span&gt;&lt;span&gt; (4151732 3207017)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;10&lt;/span&gt;&lt;span&gt; (4151721 3206809)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 691 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-extraction-user[
+
+```r
+net %&gt;%  
+  st_transform(3035) %&gt;%  
+  activate("nodes") %&gt;%  
+  st_as_sf() %&gt;%  
+* mutate(
+*   aoi = st_area(
+*     st_collection_extract(
+*       st_voronoi(do.call(c, st_geometry(.)))
+* )))
+```
+]
+ 
+.right-panel-extraction-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;Simple feature collection with 701 features and 1 field
+geometry type:  POINT
+dimension:      XY
+bbox:           xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565
+projected CRS:  ETRS89-extended / LAEA Europe
+&lt;span style='color: #555555;'&gt;# A tibble: 701 x 2&lt;/span&gt;&lt;span&gt;
+            geometry      aoi
+ &lt;/span&gt;&lt;span style='color: #555555;'&gt;*&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;dbl&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 1&lt;/span&gt;&lt;span&gt; (4151491 3207923) 1&lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;837&lt;/span&gt;&lt;span&gt;540.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 2&lt;/span&gt;&lt;span&gt; (4151474 3207946) 2&lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;563&lt;/span&gt;&lt;span&gt;698.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 3&lt;/span&gt;&lt;span&gt; (4151398 3207777)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;36&lt;/span&gt;&lt;span&gt;462.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 4&lt;/span&gt;&lt;span&gt; (4151370 3207673)  &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;359&lt;/span&gt;&lt;span&gt;624.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 5&lt;/span&gt;&lt;span&gt; (4151408 3207539)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;12&lt;/span&gt;&lt;span&gt;954.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 6&lt;/span&gt;&lt;span&gt; (4151421 3207592)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;11&lt;/span&gt;&lt;span&gt;089.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 7&lt;/span&gt;&lt;span&gt; (4151885 3206698)  &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;190&lt;/span&gt;&lt;span&gt;473.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 8&lt;/span&gt;&lt;span&gt; (4151762 3206789)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;26&lt;/span&gt;&lt;span&gt;370.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt; 9&lt;/span&gt;&lt;span&gt; (4151732 3207017)    &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;8&lt;/span&gt;&lt;span&gt;416.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;10&lt;/span&gt;&lt;span&gt; (4151721 3206809)    &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;4&lt;/span&gt;&lt;span&gt;867.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 691 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-extraction-user[
+
+```r
+net %&gt;%  
+  st_transform(3035) %&gt;%  
+  activate("nodes") %&gt;%  
+  st_as_sf() %&gt;%  
+  mutate(  
+    aoi = st_area(  
+      st_collection_extract(  
+        st_voronoi(do.call(c, st_geometry(.)))  
+  ))) -&gt;  
+* y
+
+*net %&gt;%
+* st_transform(3035) %&gt;%
+* activate("nodes")
+```
+]
+ 
+.right-panel-extraction-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-extraction-user[
+
+```r
+net %&gt;%  
+  st_transform(3035) %&gt;%  
+  activate("nodes") %&gt;%  
+  st_as_sf() %&gt;%  
+  mutate(  
+    aoi = st_area(  
+      st_collection_extract(  
+        st_voronoi(do.call(c, st_geometry(.)))  
+  ))) -&gt;  
+  y  
+
+net %&gt;%  
+  st_transform(3035) %&gt;%  
+  activate("nodes") %&gt;%  
+* st_join(y)
+```
+]
+ 
+.right-panel-extraction-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:3035&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 2 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+           geometry      aoi
+        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [m]&amp;gt;&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;dbl&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (4151491 3207923) 1&lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;837&lt;/span&gt;&lt;span&gt;540.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (4151474 3207946) 2&lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;563&lt;/span&gt;&lt;span&gt;698.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (4151398 3207777)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;36&lt;/span&gt;&lt;span&gt;462.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (4151370 3207673)  &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;359&lt;/span&gt;&lt;span&gt;624.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (4151408 3207539)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;12&lt;/span&gt;&lt;span&gt;954.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (4151421 3207592)   &lt;/span&gt;&lt;span style='text-decoration: underline;'&gt;11&lt;/span&gt;&lt;span&gt;089.
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565&lt;/span&gt;&lt;span&gt;
+   from    to name         type                               geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;        &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                      &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [m]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker~ reside~  (4151491 3207923, 4151474 3207946)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee second~ (4151398 3207777, 4151390 3207727,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Ber~ reside~ (4151408 3207539, 4151417 3207573,~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+&lt;style&gt;
+.left-panel-extraction-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-extraction-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-extraction-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
+---
+class: center, middle
+
+## Extending the vocabulary
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-edgemeasures-rotate[
+
+```r
+net %&gt;%  
+  activate("edges") %&gt;%  
+  mutate(length = edge_length())   
+```
+]
+ 
+.right-panel-edgemeasures-rotate[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Edge Data:     851 x 6 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name     type                          geometry   length
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;      &lt;/span&gt;&lt;span style='color: #555555;'&gt;[m]&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbe~ resid~ (7.533722 51.95556, 7.533461 5~  28.859~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pieners~ secon~ (7.532442 51.95422, 7.53236 51~ 107.704~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte~ resid~ (7.532709 51.95209, 7.532823 5~  54.362~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;     7     8 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;       path   (7.540063 51.94468, 7.539696 5~ 155.230~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt;     9    10 Welsing~ resid~ (7.537673 51.9475, 7.537614 51~ 208.663~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt;    11    12 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;       footw~ (7.543791 51.94733, 7.54369 51~  63.023~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 845 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Node Data:     701 x 1&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 698 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-edgemeasures-rotate[
+
+```r
+net %&gt;%  
+  activate("edges") %&gt;%  
+* mutate(straight = edge_straight_length())
+```
+]
+ 
+.right-panel-edgemeasures-rotate[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Edge Data:     851 x 6 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name     type                          geometry straight
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;      &lt;/span&gt;&lt;span style='color: #555555;'&gt;[m]&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbe~ resid~ (7.533722 51.95556, 7.533461 5~  28.859~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pieners~ secon~ (7.532442 51.95422, 7.53236 51~ 107.073~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte~ resid~ (7.532709 51.95209, 7.532823 5~  54.336~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;     7     8 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;       path   (7.540063 51.94468, 7.539696 5~ 153.916~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt;     9    10 Welsing~ resid~ (7.537673 51.9475, 7.537614 51~ 208.663~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt;    11    12 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;       footw~ (7.543791 51.94733, 7.54369 51~  61.702~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 845 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Node Data:     701 x 1&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 698 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-edgemeasures-rotate[
+
+```r
+net %&gt;%  
+  activate("edges") %&gt;%  
+* mutate(circuity = edge_circuity())
+```
+]
+ 
+.right-panel-edgemeasures-rotate[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Edge Data:     851 x 6 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name     type                          geometry circuity
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;      &lt;/span&gt;&lt;span style='color: #555555;'&gt;[1]&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbe~ resid~ (7.533722 51.95556, 7.533461 5~ 1.000000
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pieners~ secon~ (7.532442 51.95422, 7.53236 51~ 1.005896
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte~ resid~ (7.532709 51.95209, 7.532823 5~ 1.000472
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;     7     8 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;       path   (7.540063 51.94468, 7.539696 5~ 1.008539
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt;     9    10 Welsing~ resid~ (7.537673 51.9475, 7.537614 51~ 1.000000
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt;    11    12 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;       footw~ (7.543791 51.94733, 7.54369 51~ 1.021405
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 845 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Node Data:     701 x 1&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 698 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+&lt;style&gt;
+.left-panel-edgemeasures-rotate {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-edgemeasures-rotate {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-edgemeasures-rotate {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+
+class: split-40
+count: false
+ 
+
+.left-panel-shortestpath-user[
+
+```r
+*p1 = net %&gt;%
+* activate(nodes) %&gt;%
+* st_as_sf() %&gt;%
+* slice(1)
+
+*p2 = net %&gt;%
+* activate(nodes) %&gt;%
+* st_as_sf() %&gt;%
+* slice(9)
+```
+]
+ 
+.right-panel-shortestpath-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-shortestpath-user[
+
+```r
+p1 = net %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(1)  
+
+p2 = net %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(9)  
+
+*p3 = sf::st_sfc(
+* sf::st_geometry(p1)[[1]] + sf::st_point(c(0.01, 0.01)),
+* crs = sf::st_crs(p1)
+*) %&gt;% st_sf()
+
+*p4 = sf::st_sfc(
+* sf::st_geometry(p2)[[1]] + sf::st_point(c(0.01, 0.01)),
+* crs = sf::st_crs(p2)
+*) %&gt;% st_sf()
+```
+]
+ 
+.right-panel-shortestpath-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-shortestpath-user[
+
+```r
+p1 = net %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(1)  
+
+p2 = net %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(9)  
+
+p3 = sf::st_sfc(  
+  sf::st_geometry(p1)[[1]] + sf::st_point(c(0.01, 0.01)),  
+  crs = sf::st_crs(p1)  
+) %&gt;% st_sf()  
+
+p4 = sf::st_sfc(  
+  sf::st_geometry(p2)[[1]] + sf::st_point(c(0.01, 0.01)),  
+  crs = sf::st_crs(p2)  
+) %&gt;% st_sf()  
+
+*net %&gt;%
+* # activate("edges") %&gt;%  # activate("edges") %&gt;%
+* # mutate(weights = edge_length()) %&gt;%  # mutate(weights = edge_length()) %&gt;%
+* st_shortest_paths(p2, p1) %&gt;%
+* .$vpath
+```
+]
+ 
+.right-panel-shortestpath-user[
 
 ```
-Simple feature collection with 851 features and 4 fields
-geometry type:  LINESTRING
-dimension:      XY
-bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
-geographic CRS: WGS 84
-# A tibble: 851 x 5
-    from    to name       type                                geometry
-   &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
- 1     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.955~
- 2     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.9537~
- 3     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.952~
- 4     7     8 &lt;NA&gt;       path    (7.540063 51.94468, 7.539696 51.944~
- 5     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.9456~
- 6    11    12 &lt;NA&gt;       footway (7.543791 51.94733, 7.54369 51.9468~
- 7    13    14 &lt;NA&gt;       footway (7.54012 51.94478, 7.539931 51.9451~
- 8     8    10 &lt;NA&gt;       path    (7.53822 51.94546, 7.538131 51.9454~
- 9     7    15 &lt;NA&gt;       track   (7.540063 51.94468, 7.540338 51.944~
-10    16    17 &lt;NA&gt;       track   (7.5424 51.94599, 7.54205 51.94629,~
-# ... with 841 more rows
+although coordinates are longitude/latitude, st_nearest_feature assumes that they are planar
+although coordinates are longitude/latitude, st_nearest_feature assumes that they are planar
+```
+
+```
+[[1]]
++ 17/701 vertices, from a44a0e2:
+ [1]   9 167 292 524 111 506 512 657 533 424 426 208 164 260 579 644
+[17]   1
+```
+]
+
+&lt;style&gt;
+.left-panel-shortestpath-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-shortestpath-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-shortestpath-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+.note[See issue [#54](https://github.com/luukvdmeer/sfnetworks/issues/54)]
+
+---
+
+class: split-40
+count: false
+ 
+
+.left-panel-morphers-user[
+
+```r
+*net %&gt;%
+* morph(to_components) -&gt;
+* net_m
+```
+]
+ 
+.right-panel-morphers-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-morphers-user[
+
+```r
+net %&gt;%  
+  morph(to_components) -&gt;  
+  net_m  
+
+*net_m %&gt;% class()
+```
+]
+ 
+.right-panel-morphers-user[
+
+```
+[1] "morphed_sfnetwork" "morphed_tbl_graph" "list"             
 ```
 ]
 
@@ -1109,113 +2369,519 @@ class: split-40
 count: false
  
 
-.left-code-activate-user[
+.left-panel-morphers-user[
 
 ```r
-roxel %&gt;%  
-  as_sfnetwork() %&gt;%  
-  activate('edges')  %&gt;%  
-  st_as_sf()  
+net %&gt;%  
+  morph(to_components) -&gt;  
+  net_m  
 
-*roxel %&gt;%
-* as_sfnetwork(
-*   edges_as_lines = F
-* ) %&gt;%
-* activate('edges')  %&gt;%
-* as_tibble()
+net_m %&gt;% class()  
+
+*net_m %&gt;% length()
 ```
 ]
  
-.right-output-activate-user[
+.right-panel-morphers-user[
 
 ```
-Simple feature collection with 851 features and 4 fields
-geometry type:  LINESTRING
-dimension:      XY
-bbox:           xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax: 51.9612
-geographic CRS: WGS 84
-# A tibble: 851 x 5
-    from    to name       type                                geometry
-   &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;                       &lt;LINESTRING [°]&gt;
- 1     1     2 Havixbeck~ reside~ (7.533722 51.95556, 7.533461 51.955~
- 2     3     4 Pienersal~ second~ (7.532442 51.95422, 7.53236 51.9537~
- 3     5     6 Schulte-B~ reside~ (7.532709 51.95209, 7.532823 51.952~
- 4     7     8 &lt;NA&gt;       path    (7.540063 51.94468, 7.539696 51.944~
- 5     9    10 Welsinghe~ reside~ (7.537673 51.9475, 7.537614 51.9456~
- 6    11    12 &lt;NA&gt;       footway (7.543791 51.94733, 7.54369 51.9468~
- 7    13    14 &lt;NA&gt;       footway (7.54012 51.94478, 7.539931 51.9451~
- 8     8    10 &lt;NA&gt;       path    (7.53822 51.94546, 7.538131 51.9454~
- 9     7    15 &lt;NA&gt;       track   (7.540063 51.94468, 7.540338 51.944~
-10    16    17 &lt;NA&gt;       track   (7.5424 51.94599, 7.54205 51.94629,~
-# ... with 841 more rows
+[1] "morphed_sfnetwork" "morphed_tbl_graph" "list"             
 ```
 
 ```
-# A tibble: 851 x 4
-    from    to name                  type       
-   &lt;int&gt; &lt;int&gt; &lt;fct&gt;                 &lt;fct&gt;      
- 1     1     2 Havixbecker Strasse   residential
- 2     3     4 Pienersallee          secondary  
- 3     5     6 Schulte-Bernd-Strasse residential
- 4     7     8 &lt;NA&gt;                  path       
- 5     9    10 Welsingheide          residential
- 6    11    12 &lt;NA&gt;                  footway    
- 7    13    14 &lt;NA&gt;                  footway    
- 8     8    10 &lt;NA&gt;                  path       
- 9     7    15 &lt;NA&gt;                  track      
-10    16    17 &lt;NA&gt;                  track      
-# ... with 841 more rows
+[1] 14
 ```
 ]
 
+---
+class: split-40
+count: false
+ 
+
+.left-panel-morphers-user[
+
+```r
+net %&gt;%  
+  morph(to_components) -&gt;  
+  net_m  
+
+net_m %&gt;% class()  
+
+net_m %&gt;% length()  
+
+*net %&gt;%
+* convert(to_components, .select = 1)
+```
+]
+ 
+.right-panel-morphers-user[
+
+```
+[1] "morphed_sfnetwork" "morphed_tbl_graph" "list"             
+```
+
+```
+[1] 14
+```
+
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;675&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;838&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 1 component with spatially explicit edges
+#
+# Node Data:     675 x 2 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry .tidygraph_node_index
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)                     1
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)                     2
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)                     3
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)                     4
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)                     5
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)                     6
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 669 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     838 x 6&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name   type                    geometry .tidygraph_edge~
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;           &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;            &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havix~ resi~ (7.533722 51.95556, 7.533~                1
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Piene~ seco~ (7.532442 51.95422, 7.532~                2
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schul~ resi~ (7.532709 51.95209, 7.532~                3
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 835 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
 &lt;style&gt;
-.left-code-activate-user {
+.left-panel-morphers-user {
   color: #777;
   width: 38%;
   height: 92%;
   float: left;
   font-size: 80%
 }
-.right-output-activate-user {
+.right-panel-morphers-user {
   width: 60%;
   float: right;
   padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-morphers-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
 }
 &lt;/style&gt;
 
 
 
 
----
-
-## What is out there already?
-
---
-
-- [dodgr](https://atfutures.github.io/dodgr/)
-
---
-
-- [cppRouting](https://github.com/vlarmet/cppRouting)
-
---
-
-- [shp2graph](https://r-forge.r-project.org/projects/shp2graph)
-
---
-
-- [spnetwork](https://github.com/edzer/spnetwork)
-
---
-
-- [stplanr](https://docs.ropensci.org/stplanr/)
-
---
-
-- ...
 
 ---
 
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers1-user[
+
+```r
+*net
+```
+]
+ 
+.right-panel-spatialmorphers1-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;701&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;851&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Node Data:     701 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522622 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532709 51.95209)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532869 51.95257)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     851 x 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name        type                                geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecke~ reside~ (7.533722 51.95556, 7.533461 51.955~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersall~ second~ (7.532442 51.95422, 7.53236 51.9537~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Be~ reside~ (7.532709 51.95209, 7.532823 51.952~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers1-user[
+
+```r
+net %&gt;%  
+* convert(to_spatial_coordinates)
+```
+]
+ 
+.right-panel-spatialmorphers1-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# A tbl_graph: 701 nodes and 851 edges
+#
+# An undirected multigraph with 14 components
+#
+# Node Data: 701 x 3 (active)&lt;/span&gt;&lt;span&gt;
+  .tidygraph_node_index     X     Y
+                  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;dbl&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;dbl&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;                     1  7.53  52.0
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;                     2  7.53  52.0
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;                     3  7.53  52.0
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;                     4  7.53  52.0
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt;                     5  7.53  52.0
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt;                     6  7.53  52.0
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 695 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data: 851 x 5&lt;/span&gt;&lt;span&gt;
+   from    to name                  type        .tidygraph_edge_index
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;                       &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havixbecker Strasse   residential                     1
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Pienersallee          secondary                       2
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     6 Schulte-Bernd-Strasse residential                     3
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 848 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+&lt;style&gt;
+.left-panel-spatialmorphers1-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-spatialmorphers1-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-spatialmorphers1-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers2-user[
+
+```r
+*net %&gt;%
+* convert(to_spatial_dense_graph)
+```
+]
+ 
+.right-panel-spatialmorphers2-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;1517&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;1692&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# A directed simple graph with 1 component with spatially explicit edges
+#
+# Node Data:     1,517 x 1 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+             geometry
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt; (7.533461 51.95576)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;  (7.53236 51.95377)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt;  (7.53209 51.95328)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.532442 51.95422)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.532823 51.95239)
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 1,511 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     1,692 x 6&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.522594 ymin: 51.94151 xmax: 7.546705 ymax:
+#   51.9612&lt;/span&gt;&lt;span&gt;
+   from    to name   type   .tidygraph_edge~                  geometry
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;             &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     1     2 Havix~ resid~                1 (7.533722 51.95556, 7.53~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     3     4 Piene~ secon~                2 (7.53236 51.95377, 7.532~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     5     3 Piene~ secon~                2 (7.532442 51.95422, 7.53~
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 1,689 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers2-user[
+
+```r
+net %&gt;%  
+  convert(to_spatial_dense_graph) %&gt;%  
+* plot()
+```
+]
+ 
+.right-panel-spatialmorphers2-user[
+&lt;img src="slides_files/figure-html/spatialmorphers2_user_2_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-panel-spatialmorphers2-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-spatialmorphers2-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-spatialmorphers2-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers3-user[
+
+```r
+*net %&gt;%
+* convert(to_spatial_shortest_paths, 1, 9)
+```
+]
+ 
+.right-panel-spatialmorphers3-user[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;17&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;16&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+#
+# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+#
+# An unrooted tree with spatially explicit edges
+#
+# Node Data:     17 x 2 (active)&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.533722 ymin: 51.9475 xmax: 7.538665 ymax:
+#   51.95556&lt;/span&gt;&lt;span&gt;
+             geometry .tidygraph_node_index
+          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)                     1
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;  (7.537673 51.9475)                     9
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.538166 51.94902)                   111
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (7.535656 51.95448)                   164
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.538665 51.94794)                   167
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.535758 51.95404)                   208
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 11 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
+# Edge Data:     16 x 6&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.533722 ymin: 51.9475 xmax: 7.538665 ymax:
+#   51.95556&lt;/span&gt;&lt;span&gt;
+   from    to name   type                    geometry .tidygraph_edge~
+  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;           &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;            &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     2     5 Nottu~ resi~ (7.537673 51.9475, 7.5380~               94
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     4     7 Im Se~ resi~ (7.535677 51.95453, 7.535~              156
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     7    15 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;     cycl~ (7.535677 51.95453, 7.535~              456
+&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 13 more rows&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers3-user[
+
+```r
+net %&gt;%  
+  convert(to_spatial_shortest_paths, 1, 9) -&gt;  
+* net_sp
+
+*plot(net)
+```
+]
+ 
+.right-panel-spatialmorphers3-user[
+&lt;img src="slides_files/figure-html/spatialmorphers3_user_2_output-1.png" width="432" /&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers3-user[
+
+```r
+net %&gt;%  
+  convert(to_spatial_shortest_paths, 1, 9) -&gt;  
+  net_sp  
+
+plot(net)  
+*plot(net_sp,
+*    col = "Orange", lwd = 1.5, cex = 1.5,
+*    add = T)
+```
+]
+ 
+.right-panel-spatialmorphers3-user[
+&lt;img src="slides_files/figure-html/spatialmorphers3_user_3_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.left-panel-spatialmorphers3-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-spatialmorphers3-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-spatialmorphers3-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers4-user[
+
+```r
+*net %&gt;%
+* morph(to_spatial_shortest_paths, 1, c(9, 10))
+```
+]
+ 
+.right-panel-spatialmorphers4-user[
+
+```
+# A tbl_graph temporarily morphed to a .f representation
+# 
+# Original graph is an undirected multigraph with 14 components
+# consisting of 701 nodes and 851 edges
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-spatialmorphers4-user[
+
+```r
+net %&gt;%  
+  morph(to_spatial_shortest_paths, 1, c(9, 10)) %&gt;%  
+* sapply(function(x) sum(st_length(x)))
+```
+]
+ 
+.right-panel-spatialmorphers4-user[
+
+```
+[1] 0 0
+```
+]
+
+&lt;style&gt;
+.left-panel-spatialmorphers4-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-spatialmorphers4-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-spatialmorphers4-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
 background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&amp;name=4096x4096)
 
 # Applications 
@@ -1351,7 +3017,7 @@ plot(r_stplanr@sl$geometry)
 plot(l$geometry, col = "red", lwd = 5, add = TRUE)
 ```
 
-&lt;img src="slides_files/figure-html/unnamed-chunk-7-1.png" width="432" /&gt;
+&lt;img src="slides_files/figure-html/unnamed-chunk-8-1.png" width="432" /&gt;
 ]
 
 .pull-right[
