@@ -1048,7 +1048,13 @@ net_line_graph &lt;- make_line_graph(net)
 first_order_binary_adjacency &lt;- net_line_graph %&gt;%  
   as_adjacency_matrix()  
 
-*image(first_order_binary_adjacency[sample(1:851), ])
+*image(
+* first_order_binary_adjacency[sample(1:851), ],
+* xlab = list(label = "Columns", cex = 3),
+* ylab = list(label = "Row", cex = 3),
+* scales = list(cex = 3),
+* sub = ""
+* )
 ```
 ]
  
@@ -1129,7 +1135,13 @@ second_order_binary_adjacency &lt;- ego2_net %&gt;%
   graph_from_adj_list() %&gt;%  
   as_adjacency_matrix()  
 
-*image(second_order_binary_adjacency[sample(1:851), ])
+*image(
+* second_order_binary_adjacency[sample(1:851), ],
+* xlab = list(label = "Columns", cex = 3),
+* ylab = list(label = "Row", cex = 3),
+* scales = list(cex = 3),
+* sub = ""
+* )
 ```
 ]
  
