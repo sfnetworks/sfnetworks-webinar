@@ -2,7 +2,7 @@
 title: "Tidy Geospatial Networks in R"
 subtitle: "Introducing the `sfnetworks` package"
 author: "Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace"
-date: "2020-06-16 (updated: `r Sys.Date()`)"
+date: "2020-06-16"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -85,6 +85,15 @@ old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks,
 # ```
 ```
 
+### Want to follow along?
+
+Get the slides here: https://sfnetworks.github.io/sfnetworks-webinar/slides
+ 
+--
+
+and/or star this repo: https://github.com/sfnetworks/sfnetworks-webinar
+---
+class: center, middle
 ## Hello from the team!
 .center[
 ![:scale 20%](https://avatars1.githubusercontent.com/u/26540305?s=400&u=c576e87314499815cbf698b7781ee58fd1d773e2&v=4)
@@ -563,6 +572,7 @@ net %>%
 ```{r filter, include = F, fig.width = 15, dev.args = list(bg = 'transparent')}
 net = roxel %>% as_sfnetwork(directed = F) #BREAK
 
+par(mar = c(1, 1, 1, 1), bg = NA)
 plot(net) #BREAK
 
 rect = st_multipoint(c(
@@ -639,31 +649,43 @@ net %>%
 
 `r chunk_reveal(chunk_name = "shortestpath", break_type = "user", display_type = "both")`
 
-```{r shortestpath, include = F}
-p1 = net %>%
+```{r shortestpath, include = F, dev.args = list(bg = 'transparent')}
+net_proj = net %>% st_transform(3035)
+
+p1 = net_proj %>%
   activate(nodes) %>%
   st_as_sf() %>% 
   slice(1)
 
-p2 = net %>%
+p2 = net_proj %>%
   activate(nodes) %>%
   st_as_sf() %>% 
   slice(9) #BREAK
 
 p3 = sf::st_sfc(
-  sf::st_geometry(p1)[[1]] + sf::st_point(c(0.01, 0.01)), 
+  sf::st_geometry(p1)[[1]] + sf::st_point(c(500, 500)), 
   crs = sf::st_crs(p1)
-) %>% st_sf()
+)
 
 p4 = sf::st_sfc(
-  sf::st_geometry(p2)[[1]] + sf::st_point(c(0.01, 0.01)), 
+  sf::st_geometry(p2)[[1]] + sf::st_point(c(-500, -500)), 
   crs = sf::st_crs(p2)
-) %>% st_sf() #BREAK
+) #BREAK
 
-net %>% 
-  # activate("edges") %>% 
-  # mutate(weights = edge_length()) %>%
-  st_shortest_paths(p2, p1) %>% 
+par(mar = c(1,1,1,1), bg = NA)
+plot(net_proj) #BREAK
+plot(p3, col = "red", pch = 20, cex = 2, add = TRUE) #BREAK
+plot(p4, col = "red", pch = 20, cex = 2, add = TRUE) #BREAK
+```
+
+---
+`r chunk_reveal(chunk_name = "shortestpath1", break_type = "user", display_type = "both")`
+
+```{r shortestpath1, include = F}
+net_proj %>% 
+  activate("edges") %>%
+  mutate(weight = edge_length()) %>% #BREAK
+  st_shortest_paths(p3, p4) %>% 
   .$vpath #BREAK
 ```
 
@@ -708,11 +730,14 @@ net %>%
 `r chunk_reveal(chunk_name = "spatialmorphers3", break_type = "user", display_type = "both")`
 
 ```{r spatialmorphers3, include = F, dev.args = list(bg = 'transparent')}
-net %>% 
-  convert(to_spatial_shortest_paths, 1, 9) -> #BREAK
+net_proj %>% 
+  activate("edges") %>%
+  mutate(weight = edge_length()) %>% 
+  convert(to_spatial_shortest_paths, p3, p4) -> #BREAK
   net_sp 
 
-plot(net) #BREAK
+par(mar = c(1,1,1,1), bg = NA)
+plot(net_proj) #BREAK
 plot(net_sp, 
      col = "Orange", lwd = 1.5, cex = 1.5, 
      add = T) #BREAK
@@ -723,11 +748,32 @@ plot(net_sp,
 `r chunk_reveal(chunk_name = "spatialmorphers4", break_type = "user", display_type = "both")`
 
 ```{r spatialmorphers4, include = F}
-net %>% 
-  morph(to_spatial_shortest_paths, 1, c(9, 10)) %>% #BREAK
+net_proj %>% 
+  morph(to_spatial_shortest_paths, p1, c(p3, p4)) %>% #BREAK
+  activate("edges") %>% 
   sapply(function(x) sum(st_length(x))) #BREAK
 ```
 
+
+---
+
+`r chunk_reveal(chunk_name = "distancematrix", break_type = "user", display_type = "both")`
+
+```{r distancematrix, include = F}
+ps1 = c(st_geometry(p1), st_sfc(p3)) 
+ps2 = c(st_geometry(p2), st_sfc(p4)) #BREAK
+
+st_network_distance(net_proj, ps1, ps2) #BREAK
+```
+
+---
+## Want more details?
+
+Check the package vignettes:
+
+- [Tidy Geospatial Networks in R](https://luukvdmeer.github.io/sfnetworks/articles/intro.html)
+
+- [Extending the vocabulary](https://luukvdmeer.github.io/sfnetworks/articles/extensions.html)
 ---
 background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&name=4096x4096)
 
@@ -774,8 +820,6 @@ Plans from Leeds City Council responding to national [guidance](https://www.gov.
 Spatial network representation in R:
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
-
-
 
 ---
 

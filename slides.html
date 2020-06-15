@@ -4,6 +4,7 @@
     <title>Tidy Geospatial Networks in R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace" />
+    <meta name="date" content="2020-06-16" />
     <script src="libs/header-attrs-2.2/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -14,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Tidy Geospatial Networks in R
 ## Introducing the <code>sfnetworks</code> package
 ### Lucas van der Meer, Lorena Abad, Andrea Gilardi, Robin Lovelace
-### 2020-06-16 (updated: 2020-06-16)
+### 2020-06-16
 
 ---
 
@@ -31,6 +32,15 @@ PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};
 
 
 
+### Want to follow along?
+
+Get the slides here: https://sfnetworks.github.io/sfnetworks-webinar/slides
+ 
+--
+
+and/or star this repo: https://github.com/sfnetworks/sfnetworks-webinar
+---
+class: center, middle
 ## Hello from the team!
 .center[
 ![:scale 20%](https://avatars1.githubusercontent.com/u/26540305?s=400&amp;u=c576e87314499815cbf698b7781ee58fd1d773e2&amp;v=4)
@@ -1485,6 +1495,7 @@ count: false
 ```r
 net = roxel %&gt;% as_sfnetwork(directed = F)  
 
+*par(mar = c(1, 1, 1, 1), bg = NA)
 *plot(net)
 ```
 ]
@@ -1503,6 +1514,7 @@ count: false
 ```r
 net = roxel %&gt;% as_sfnetwork(directed = F)  
 
+par(mar = c(1, 1, 1, 1), bg = NA)  
 plot(net)  
 
 *rect = st_multipoint(c(
@@ -1537,6 +1549,7 @@ count: false
 ```r
 net = roxel %&gt;% as_sfnetwork(directed = F)  
 
+par(mar = c(1, 1, 1, 1), bg = NA)  
 plot(net)  
 
 rect = st_multipoint(c(  
@@ -2079,12 +2092,14 @@ count: false
 .left-panel-shortestpath-user[
 
 ```r
-*p1 = net %&gt;%
+*net_proj = net %&gt;% st_transform(3035)
+
+*p1 = net_proj %&gt;%
 * activate(nodes) %&gt;%
 * st_as_sf() %&gt;%
 * slice(1)
 
-*p2 = net %&gt;%
+*p2 = net_proj %&gt;%
 * activate(nodes) %&gt;%
 * st_as_sf() %&gt;%
 * slice(9)
@@ -2103,25 +2118,27 @@ count: false
 .left-panel-shortestpath-user[
 
 ```r
-p1 = net %&gt;%  
+net_proj = net %&gt;% st_transform(3035)  
+
+p1 = net_proj %&gt;%  
   activate(nodes) %&gt;%  
   st_as_sf() %&gt;%  
   slice(1)  
 
-p2 = net %&gt;%  
+p2 = net_proj %&gt;%  
   activate(nodes) %&gt;%  
   st_as_sf() %&gt;%  
   slice(9)  
 
 *p3 = sf::st_sfc(
-* sf::st_geometry(p1)[[1]] + sf::st_point(c(0.01, 0.01)),
+* sf::st_geometry(p1)[[1]] + sf::st_point(c(500, 500)),
 * crs = sf::st_crs(p1)
-*) %&gt;% st_sf()
+*) 
 
 *p4 = sf::st_sfc(
-* sf::st_geometry(p2)[[1]] + sf::st_point(c(0.01, 0.01)),
+* sf::st_geometry(p2)[[1]] + sf::st_point(c(-500, -500)),
 * crs = sf::st_crs(p2)
-*) %&gt;% st_sf()
+*) 
 ```
 ]
  
@@ -2137,47 +2154,116 @@ count: false
 .left-panel-shortestpath-user[
 
 ```r
-p1 = net %&gt;%  
+net_proj = net %&gt;% st_transform(3035)  
+
+p1 = net_proj %&gt;%  
   activate(nodes) %&gt;%  
   st_as_sf() %&gt;%  
   slice(1)  
 
-p2 = net %&gt;%  
+p2 = net_proj %&gt;%  
   activate(nodes) %&gt;%  
   st_as_sf() %&gt;%  
   slice(9)  
 
 p3 = sf::st_sfc(  
-  sf::st_geometry(p1)[[1]] + sf::st_point(c(0.01, 0.01)),  
+  sf::st_geometry(p1)[[1]] + sf::st_point(c(500, 500)),  
   crs = sf::st_crs(p1)  
-) %&gt;% st_sf()  
+)  
 
 p4 = sf::st_sfc(  
-  sf::st_geometry(p2)[[1]] + sf::st_point(c(0.01, 0.01)),  
+  sf::st_geometry(p2)[[1]] + sf::st_point(c(-500, -500)),  
   crs = sf::st_crs(p2)  
-) %&gt;% st_sf()  
+)  
 
-*net %&gt;%
-* # activate("edges") %&gt;%  # activate("edges") %&gt;%
-* # mutate(weights = edge_length()) %&gt;%  # mutate(weights = edge_length()) %&gt;%
-* st_shortest_paths(p2, p1) %&gt;%
-* .$vpath
+*par(mar = c(1,1,1,1), bg = NA)
+*plot(net_proj)
 ```
 ]
  
 .right-panel-shortestpath-user[
+&lt;img src="slides_files/figure-html/shortestpath_user_3_output-1.png" width="432" /&gt;
+]
 
-```
-although coordinates are longitude/latitude, st_nearest_feature assumes that they are planar
-although coordinates are longitude/latitude, st_nearest_feature assumes that they are planar
-```
+---
+class: split-40
+count: false
+ 
 
+.left-panel-shortestpath-user[
+
+```r
+net_proj = net %&gt;% st_transform(3035)  
+
+p1 = net_proj %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(1)  
+
+p2 = net_proj %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(9)  
+
+p3 = sf::st_sfc(  
+  sf::st_geometry(p1)[[1]] + sf::st_point(c(500, 500)),  
+  crs = sf::st_crs(p1)  
+)  
+
+p4 = sf::st_sfc(  
+  sf::st_geometry(p2)[[1]] + sf::st_point(c(-500, -500)),  
+  crs = sf::st_crs(p2)  
+)  
+
+par(mar = c(1,1,1,1), bg = NA)  
+plot(net_proj)  
+*plot(p3, col = "red", pch = 20, cex = 2, add = TRUE)
 ```
-[[1]]
-+ 17/701 vertices, from a44a0e2:
- [1]   9 167 292 524 111 506 512 657 533 424 426 208 164 260 579 644
-[17]   1
+]
+ 
+.right-panel-shortestpath-user[
+&lt;img src="slides_files/figure-html/shortestpath_user_4_output-1.png" width="432" /&gt;
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-shortestpath-user[
+
+```r
+net_proj = net %&gt;% st_transform(3035)  
+
+p1 = net_proj %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(1)  
+
+p2 = net_proj %&gt;%  
+  activate(nodes) %&gt;%  
+  st_as_sf() %&gt;%  
+  slice(9)  
+
+p3 = sf::st_sfc(  
+  sf::st_geometry(p1)[[1]] + sf::st_point(c(500, 500)),  
+  crs = sf::st_crs(p1)  
+)  
+
+p4 = sf::st_sfc(  
+  sf::st_geometry(p2)[[1]] + sf::st_point(c(-500, -500)),  
+  crs = sf::st_crs(p2)  
+)  
+
+par(mar = c(1,1,1,1), bg = NA)  
+plot(net_proj)  
+plot(p3, col = "red", pch = 20, cex = 2, add = TRUE)  
+*plot(p4, col = "red", pch = 20, cex = 2, add = TRUE)
 ```
+]
+ 
+.right-panel-shortestpath-user[
+&lt;img src="slides_files/figure-html/shortestpath_user_5_output-1.png" width="432" /&gt;
 ]
 
 &lt;style&gt;
@@ -2195,6 +2281,111 @@ although coordinates are longitude/latitude, st_nearest_feature assumes that the
   font-size: 80%
 }
 .middle-panel-shortestpath-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-shortestpath1-user[
+
+```r
+*net_proj %&gt;%
+* activate("edges") %&gt;%
+* mutate(weight = edge_length())
+```
+]
+ 
+.right-panel-shortestpath1-user[
+
+```
+# An sfnetwork with 701 nodes and 851 edges
+#
+# CRS:  EPSG:3035 
+#
+# An undirected multigraph with 14 components with spatially explicit edges
+#
+# Edge Data:     851 x 6 (active)
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565
+   from    to name     type                          geometry   weight
+  &lt;int&gt; &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;                 &lt;LINESTRING [m]&gt;      [m]
+1     1     2 Havixbe~ resid~ (4151491 3207923, 4151474 3207~  28.859~
+2     3     4 Pieners~ secon~ (4151398 3207777, 4151390 3207~ 107.714~
+3     5     6 Schulte~ resid~ (4151408 3207539, 4151417 3207~  54.367~
+4     7     8 &lt;NA&gt;     path   (4151885 3206698, 4151861 3206~ 155.223~
+5     9    10 Welsing~ resid~ (4151732 3207017, 4151721 3206~ 208.682~
+6    11    12 &lt;NA&gt;     footw~ (4152152 3206984, 4152143 3206~  63.028~
+# ... with 845 more rows
+#
+# Node Data:     701 x 1
+# Geometry type: POINT
+# Dimension:     XY
+# Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax:
+#   3208565
+           geometry
+        &lt;POINT [m]&gt;
+1 (4151491 3207923)
+2 (4151474 3207946)
+3 (4151398 3207777)
+# ... with 698 more rows
+```
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-shortestpath1-user[
+
+```r
+net_proj %&gt;%  
+  activate("edges") %&gt;%  
+  mutate(weight = edge_length()) %&gt;%  
+* st_shortest_paths(p3, p4) %&gt;%
+* .$vpath
+```
+]
+ 
+.right-panel-shortestpath1-user[
+
+```
+[[1]]
++ 45/701 vertices, from 90c0122:
+ [1] 178 179 601 121  29  28 478 140 135 136 143 471 579 263 262 480
+[17]   3   4 248 113  63 321 210 470 319 317 323 550 554 546  67 194
+[33] 646 439 440 565 666 701 161 628 242 493 240 157 158
+```
+]
+
+&lt;style&gt;
+.left-panel-shortestpath1-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-shortestpath1-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-shortestpath1-user {
   width: 32%;
   float: left;
   padding-left: 1%;
@@ -2586,45 +2777,50 @@ count: false
 .left-panel-spatialmorphers3-user[
 
 ```r
-*net %&gt;%
-* convert(to_spatial_shortest_paths, 1, 9)
+*net_proj %&gt;%
+* activate("edges") %&gt;%
+* mutate(weight = edge_length()) %&gt;%
+* convert(to_spatial_shortest_paths, p3, p4)
 ```
 ]
  
 .right-panel-spatialmorphers3-user[
-&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;&lt;span style='color: #555555;'&gt;# An sfnetwork with&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;17&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;nodes and&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;16&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;edges
+
+```
+# An sfnetwork with 45 nodes and 44 edges
 #
-# CRS: &lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;EPSG:4326&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;'&gt;
+# CRS:  EPSG:3035 
 #
 # An unrooted tree with spatially explicit edges
 #
-# Node Data:     17 x 2 (active)&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: POINT&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.533722 ymin: 51.9475 xmax: 7.538665 ymax:
-#   51.95556&lt;/span&gt;&lt;span&gt;
-             geometry .tidygraph_node_index
-          &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;POINT [°]&amp;gt;&lt;/span&gt;&lt;span&gt;                 &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt; (7.533722 51.95556)                     1
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;  (7.537673 51.9475)                     9
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt; (7.538166 51.94902)                   111
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;4&lt;/span&gt;&lt;span&gt; (7.535656 51.95448)                   164
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;5&lt;/span&gt;&lt;span&gt; (7.538665 51.94794)                   167
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;6&lt;/span&gt;&lt;span&gt; (7.535758 51.95404)                   208
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 11 more rows&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;#
-# Edge Data:     16 x 6&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Geometry type: LINESTRING&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Dimension:     XY&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# Bounding box:  xmin: 7.533722 ymin: 51.9475 xmax: 7.538665 ymax:
-#   51.95556&lt;/span&gt;&lt;span&gt;
-   from    to name   type                    geometry .tidygraph_edge~
-  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;fct&amp;gt;&lt;/span&gt;&lt;span&gt;           &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;LINESTRING [°]&amp;gt;&lt;/span&gt;&lt;span&gt;            &lt;/span&gt;&lt;span style='color: #555555;font-style: italic;'&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;1&lt;/span&gt;&lt;span&gt;     2     5 Nottu~ resi~ (7.537673 51.9475, 7.5380~               94
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;2&lt;/span&gt;&lt;span&gt;     4     7 Im Se~ resi~ (7.535677 51.95453, 7.535~              156
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;3&lt;/span&gt;&lt;span&gt;     7    15 &lt;/span&gt;&lt;span style='color: #BB0000;'&gt;NA&lt;/span&gt;&lt;span&gt;     cycl~ (7.535677 51.95453, 7.535~              456
-&lt;/span&gt;&lt;span style='color: #555555;'&gt;# ... with 13 more rows&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/CODE&gt;&lt;/PRE&gt;
+# Edge Data:     44 x 7 (active)
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: 4150901 ymin: 3206483 xmax: 4152196 ymax:
+#   3208337
+   from    to name  type                   geometry   weight
+  &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;          &lt;LINESTRING [m]&gt;      [m]
+1     1     2 Pien~ seco~ (4151398 3207777, 415139~ 107.714~
+2     3     4 Bred~ resi~ (4151845 3208048, 415192~ 100.608~
+3     4     8 Bred~ resi~ (4152058 3208166, 415205~ 143.449~
+4     9    10 &lt;NA&gt;  cycl~ (4151674 3207951, 415167~  59.453~
+5     9    11 &lt;NA&gt;  cycl~ (4151674 3207951, 415170~  86.038~
+6    13    14 Lise~ resi~ (4151129 3206483, 415124~ 112.524~
+# ... with 38 more rows, and 1 more variable:
+#   .tidygraph_edge_index &lt;int&gt;
+#
+# Node Data:     45 x 2
+# Geometry type: POINT
+# Dimension:     XY
+# Bounding box:  xmin: 4150901 ymin: 3206483 xmax: 4152196 ymax:
+#   3208337
+           geometry .tidygraph_node_index
+        &lt;POINT [m]&gt;                 &lt;int&gt;
+1 (4151398 3207777)                     3
+2 (4151370 3207673)                     4
+3 (4151845 3208048)                    28
+# ... with 42 more rows
+```
 ]
 
 ---
@@ -2635,11 +2831,14 @@ count: false
 .left-panel-spatialmorphers3-user[
 
 ```r
-net %&gt;%  
-  convert(to_spatial_shortest_paths, 1, 9) -&gt;  
+net_proj %&gt;%  
+  activate("edges") %&gt;%  
+  mutate(weight = edge_length()) %&gt;%  
+  convert(to_spatial_shortest_paths, p3, p4) -&gt;  
 * net_sp
 
-*plot(net)
+*par(mar = c(1,1,1,1), bg = NA)
+*plot(net_proj)
 ```
 ]
  
@@ -2655,11 +2854,14 @@ count: false
 .left-panel-spatialmorphers3-user[
 
 ```r
-net %&gt;%  
-  convert(to_spatial_shortest_paths, 1, 9) -&gt;  
+net_proj %&gt;%  
+  activate("edges") %&gt;%  
+  mutate(weight = edge_length()) %&gt;%  
+  convert(to_spatial_shortest_paths, p3, p4) -&gt;  
   net_sp  
 
-plot(net)  
+par(mar = c(1,1,1,1), bg = NA)  
+plot(net_proj)  
 *plot(net_sp,
 *    col = "Orange", lwd = 1.5, cex = 1.5,
 *    add = T)
@@ -2705,8 +2907,8 @@ count: false
 .left-panel-spatialmorphers4-user[
 
 ```r
-*net %&gt;%
-* morph(to_spatial_shortest_paths, 1, c(9, 10))
+*net_proj %&gt;%
+* morph(to_spatial_shortest_paths, p1, c(p3, p4))
 ```
 ]
  
@@ -2728,8 +2930,9 @@ count: false
 .left-panel-spatialmorphers4-user[
 
 ```r
-net %&gt;%  
-  morph(to_spatial_shortest_paths, 1, c(9, 10)) %&gt;%  
+net_proj %&gt;%  
+  morph(to_spatial_shortest_paths, p1, c(p3, p4)) %&gt;%  
+* activate("edges") %&gt;%
 * sapply(function(x) sum(st_length(x)))
 ```
 ]
@@ -2737,7 +2940,7 @@ net %&gt;%
 .right-panel-spatialmorphers4-user[
 
 ```
-[1] 0 0
+[1] 1239.095 2651.979
 ```
 ]
 
@@ -2767,6 +2970,83 @@ net %&gt;%
 
 
 
+
+---
+
+class: split-40
+count: false
+ 
+
+.left-panel-distancematrix-user[
+
+```r
+*ps1 = c(st_geometry(p1), st_sfc(p3))
+*ps2 = c(st_geometry(p2), st_sfc(p4))
+```
+]
+ 
+.right-panel-distancematrix-user[
+
+]
+
+---
+class: split-40
+count: false
+ 
+
+.left-panel-distancematrix-user[
+
+```r
+ps1 = c(st_geometry(p1), st_sfc(p3))  
+ps2 = c(st_geometry(p2), st_sfc(p4))  
+
+*st_network_distance(net_proj, ps1, ps2)
+```
+]
+ 
+.right-panel-distancematrix-user[
+
+```
+     [,1] [,2]
+[1,]   16   28
+[2,]   23   35
+```
+]
+
+&lt;style&gt;
+.left-panel-distancematrix-user {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-distancematrix-user {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-distancematrix-user {
+  width: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+## Want more details?
+
+Check the package vignettes:
+
+- [Tidy Geospatial Networks in R](https://luukvdmeer.github.io/sfnetworks/articles/intro.html)
+
+- [Extending the vocabulary](https://luukvdmeer.github.io/sfnetworks/articles/extensions.html)
 ---
 background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&amp;name=4096x4096)
 
@@ -2813,8 +3093,6 @@ Plans from Leeds City Council responding to national [guidance](https://www.gov.
 Spatial network representation in R:
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
-
-
 
 ---
 
