@@ -1077,3 +1077,11 @@ class: center, middle
 #### Questions?
 
 .note[Slides powered by [xaringan](https://github.com/yihui/xaringan), [xaringanthemer](https://github.com/gadenbuie/xaringanthemer) and [flipbookr](https://github.com/EvaMaeRey/flipbookr)]
+
+---
+background-image: url(https://github.com/sfnetworks/sfnetworks-webinar/raw/master/figs/e-Rum.png)
+
+## See you tomorrow at e-Rum2020!
+
+
+
