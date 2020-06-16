@@ -1,0 +1,51 @@
+# Tidygraph for geospatial
+
+## activate
+```{r}
+library(tidygraph)
+
+graph <- create_notable('meredith')
+# Nodes are activated by default
+graph
+```
+
+```{r}
+graph %>% 
+  activate(edges)
+```
+
+```{r}
+graph %E>% pull(from)
+```
+
+## algorithms
+```{r}
+# Algorithms know the graph and the nodes
+graph %>% 
+  mutate(
+    centrality = centrality_pagerank()
+  )
+```
+
+```{r}
+# Recycling is enforced
+graph %>% 
+  mutate(
+    dist_to_center = node_distance_to(node_is_center())
+  )
+```
+
+## Morphing
+```{r}
+# You pass a morpher to morph()
+graph %>% 
+  morph(to_shortest_path, from = 1, to = 35)
+```
+
+```{r}
+# Get back to the original graph with unmorph()
+graph %>% 
+  morph(to_shortest_path, from = 1, to = 35) %>% 
+  mutate(on_path = TRUE) %>% 
+  unmorph()
+```
