@@ -647,7 +647,7 @@ net %>%
 
 ---
 
-`r chunk_reveal(chunk_name = "shortestpath", break_type = "user", display_type = "both")`
+`r chunk_reveal(chunk_name = "shortestpath", break_type = "user", display_type = "both", width_left = "50%", width_right = "45%")`
 
 ```{r shortestpath, include = F, dev.args = list(bg = 'transparent')}
 net_proj = net %>% st_transform(3035)
@@ -794,9 +794,6 @@ background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&nam
 <br>
 <br>
 <br>
-<br>
-<br>
-
 
 Many potential applications including:
 
