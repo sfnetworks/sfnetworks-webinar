@@ -22,7 +22,7 @@ class: center, middle
 options(width = 70)
 knitr::opts_chunk$set(
   fig.width = 6, message = TRUE, fig.showtext = TRUE,
-  warning = FALSE, comment = "", cache = TRUE, fig.retina = 3
+  warning = FALSE, comment = "", cache = FALSE, fig.retina = 3
 )
 knitr::opts_knit$set(global.par = TRUE)
 # remotes::install_github("luukvdmeer/sfnetworks")
@@ -965,18 +965,16 @@ class: center, middle
 
 ---
 
-`r chunk_reveal(chunk_name = "nodes_degree", break_type = "user", display_type = "both", width_left = "48%", width_right = "50%")`
-
 ```{r nodes_degree, include=FALSE}
 # Estimate nodes centrality degree
-net <- net %>% #BREAK
-  activate("nodes") %>% #BREAK
-  mutate(degree = centrality_degree()) #BREAK
+net <- net %>% 
+  activate("nodes") %>% 
+  mutate(degree = centrality_degree()) 
 
 # Plot with tmap. We need to escape the nodes and 
 # edges dimension and rebuild the sf structure.
 tm_shape(net %>% activate("edges") %>% st_as_sf()) + 
-  tm_lines() + #BREAK
+  tm_lines() + 
 tm_shape(net %>% activate("nodes") %>% st_as_sf()) + 
   tm_dots(
     size = 0.2,
@@ -990,16 +988,15 @@ tm_layout(legend.text.size = 2)
 
 ---
 
-`r chunk_reveal(chunk_name = "edge_betweenness", break_type = "user", display_type = "both", width_left = "48%", width_right = "50%")`
 
 ```{r edge_betweenness, include=FALSE}
 # Estimate edges centrality betweenness
 net <- net %>% 
-  activate("edges") %>% #BREAK
+  activate("edges") %>% 
   mutate(
     lengths = st_length(.),
     betweenness = centrality_edge_betweenness(lengths)
-    ) #BREAK
+    ) 
 
 # Plot with tmap. We need to escape the nodes and 
 # edges dimension and rebuild the sf structure.
@@ -1028,15 +1025,14 @@ library(Matrix)
 
 ---
 
-`r chunk_reveal(chunk_name = "line_graph", break_type = "user", display_type = "both", width_left = "60%", width_right = "35%", title = "###First order binary adjacency", split = 50)`
 
 ```{r line_graph, include = FALSE, dev.args = list(bg = 'transparent')}
 # Create the line graph
-net_line_graph <- make_line_graph(net) #BREAK
+net_line_graph <- make_line_graph(net) 
 
 # Extract the first order binary adjacency matrix 
 first_order_binary_adjacency <- net_line_graph %>% 
-  as_adjacency_matrix() #BREAK
+  as_adjacency_matrix() 
 
 image(
   first_order_binary_adjacency[sample(1:851), ], 
@@ -1049,15 +1045,13 @@ image(
 
 ---
 
-`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_left = "55%", width_right = "42%", title = "###Second order binary adjacency", split = 50)`
-
 ```{r line_graph2, include=FALSE, dev.args = list(bg = 'transparent')}
 # Similar idea for second order binary adjacency
-ego2_net <- ego(net_line_graph, 2) #BREAK
+ego2_net <- ego(net_line_graph, 2) 
 
 second_order_binary_adjacency <- ego2_net %>% 
   graph_from_adj_list() %>% 
-  as_adjacency_matrix() #BREAK
+  as_adjacency_matrix() 
 
 image(
   second_order_binary_adjacency[sample(1:851), ], 
