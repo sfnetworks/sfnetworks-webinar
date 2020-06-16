@@ -14,7 +14,7 @@ We are working on the video-recording of the event so that people can catch-up, 
 
 ## sfnetworks-hackathon
 
-We had an amazing and very productive hackathon working on [four issues](https://github.com/luukvdmeer/sfnetworks/issues?q=is%3Aissue+label%3Ahackathon+label%3Aselected+) related to `sfnetworks` applications or further implementation (including some nice insight also into multi-model routing with dodgr!). 
+We had an amazing and very productive hackathon working on [four issues](https://github.com/luukvdmeer/sfnetworks/issues?q=is%3Aissue+label%3Ahackathon+label%3Aselected+) related to `sfnetworks` applications or further implementation (including some nice insight also into multi-modal routing with dodgr!). 
 
 Some outcomes of the hackathon are documented on their own repository on [this organization](https://github.com/sfnetworks), here is a link to each topic:
 
