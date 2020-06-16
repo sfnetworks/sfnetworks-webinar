@@ -1040,13 +1040,14 @@ image(
   xlab = list(label = "Columns", cex = 3), 
   ylab = list(label = "Row", cex = 3), 
   scales = list(cex = 3), 
+  lwd = 3,
   sub = ""
   )
 ```
 
 ---
 
-`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_left = "55%", width_right = "42%", title = "###Second order binary adjacency", split = 50)`
+`r chunk_reveal(chunk_name = "line_graph2", break_type = "user", display_type = "both", width_left = "60%", width_right = "35%", title = "###Second order binary adjacency", split = 50)`
 
 ```{r line_graph2, include=FALSE, dev.args = list(bg = 'transparent')}
 # Similar idea for second order binary adjacency
@@ -1061,6 +1062,7 @@ image(
   xlab = list(label = "Columns", cex = 3), 
   ylab = list(label = "Row", cex = 3), 
   scales = list(cex = 3), 
+  lwd = 3,
   sub = ""
   )
 ```
