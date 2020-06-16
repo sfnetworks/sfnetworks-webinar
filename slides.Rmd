@@ -404,10 +404,6 @@ remotes::install_github("luukvdmeer/sfnetworks", ref = "develop")
 
 - Edges: *to* and *from* column with end-points
 
-   + spatially explicit: `sf` object with `LINESTRING` geometries
-
-   + spatially implicit: `data.frame` or `tibble` object
-
 - Same CRS!
 
 ---
