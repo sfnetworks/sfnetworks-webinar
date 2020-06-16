@@ -2,7 +2,7 @@
 
 *e-Rum2020 statellite event: Hackathon on Spatial Networks.*
 
-Thank you everyone who joined us on the webinar and the hackathon! It was a great and fruictful experience!
+Thank you everyone who joined us on the webinar and the hackathon! It was a great and fruitful experience!
 
 If you missed it, here are the slides we presented about the `sfnetworks` package and applications: https://sfnetworks.github.io/sfnetworks-webinar/slides
 
