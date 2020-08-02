@@ -8,7 +8,9 @@ If you missed it, here are the slides we presented about the `sfnetworks` packag
 
 If you are interested on the `tidygraph` presentation by Thomas Lin Pedersen please check here: https://github.com/sfnetworks/sfnetworks-webinar/blob/master/tidygraph.pdf
 
-We are working on the video-recording of the event so that people can catch-up, keep checking this space for a link!
+And if you missed the webinar, you can see the recording here: https://www.youtube.com/watch?v=ZXTNXsvKYwo
+
+We hope you enjoy the material and keep feedback coming for the package!
 
 ---
 
